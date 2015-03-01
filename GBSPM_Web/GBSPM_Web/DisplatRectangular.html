@@ -3,8 +3,7 @@
 <head>
     <script src="scripts/angular.js"></script>
     <script src="scripts/app.js"></script>
-    <script src="scripts/d3/d3.min.js"></script>
-    <script src="scripts/d3/d3.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
     <title></title>
     <style type="text/css">
         .chart
@@ -39,7 +38,7 @@
     .link
     {
         /*stroke: #000;*/
-        stroke-width: 1.5px;
+        /*stroke-width: 1.5px;*/
     }
 
     .node
@@ -47,22 +46,18 @@
         cursor: move;
         /*fill: #ccc;*/
         stroke: #000;
-        stroke-width: 2px;
+        stroke-width: 1.5px;
     }
 
-        .node.selected
+        .node.fixed
         {
-            fill: blue;
+            fill: #f00;
         }
 </style>
-  <!--  <div ng-app="myApp">
-        <bars data="40,4,55,15,16,33,52,20"></bars>
-        <div id="chart"></div>
-    </div>-->
-    <div ng-app="sampleCircleGraph">
+    <div ng-app="docsSimpleDirective2">
         <div ng-controller="Controller">
             <div force></div>
-            <div id="chart"></div>
+            <div id="chart2"></div>
         </div>
     </div>
     
