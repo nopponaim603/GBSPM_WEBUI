@@ -60,6 +60,7 @@
     <Content Include="DisplatRectangular.html" />
     <Content Include="DisplayGraph.html" />
     <Content Include="Index.html" />
+    <Content Include="SampleSVG.html" />
     <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
@@ -79,6 +80,7 @@
     <Content Include="Json\graph.json" />
     <Content Include="Json\mockup_graph.json" />
     <Content Include="scripts\d3\LICENSE" />
+    <Content Include="Json\mockup_svg.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

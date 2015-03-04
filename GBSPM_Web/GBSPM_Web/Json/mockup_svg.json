@@ -1,0 +1,42 @@
+﻿[
+{
+"source" : null,
+"x" : 30,
+"y" : 60,
+"name" : "Germany",
+"target" : 
+[
+	{
+	"source" : null,
+	"x" : 130,
+	"y" : 30,
+	"name" : "England",
+	"target" : null	
+	},
+	{
+	"source" : null,
+	"x" : 230,
+	"y" : 60,
+	"name" : "France",
+	"target" : 
+	[
+		{
+			"source" : null,
+			"x" : 330,
+			"y" : 30,
+			"name" : "Turkey",
+			"target" : null
+		}
+	]
+	},
+	{
+	"source" : null,
+	"x" : 130,
+	"y" : 90,
+	"name" : "Thailand",
+	"target" : null	
+	}
+
+]
+}
+]

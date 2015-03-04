@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/d3/d3.min.js"></script>
+    <script src="scripts/d3/d3.js"></script>
+    <title></title>
+    <style type="text/css">
+        .link
+        {
+            stroke: red;
+            stroke-width: 2px;
+        }
+        .cirle
+        {
+            stroke: azure;
+            stroke-width:2px;
+        }
+        .collapse
+        {
+            display : none;
+        }
+        .expand
+        {
+            display : block;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="SampleSVG2">
+        <div ng-controller="MySVG">
+            <div content></div>
+            <div id="sub_content">
+               </div>
+        </div>
+    </div>
+</body>
+</html>

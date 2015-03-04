@@ -1,7 +1,7 @@
 ﻿{
   "nodes": [
-	{"x": 0, "y": 410, "color" : "#ccc", "name" : "Title 1", "node_id" : "0" },
-    {"x": 0, "y": 410, "color" : "#ccc", "name" : "Title 2", "node_id" : "1"},
+	{"x": 30, "y": 130, "color" : "#ccc", "name" : "Title 1", "node_id" : "0" },
+    {"x": 130, "y": 120, "color" : "#ccc", "name" : "Title 2", "node_id" : "1"},
     {"x": 493, "y": 364, "color" : "#ccc", "name" : "Title 3", "node_id" : "2" },
     {"x": 442, "y": 365, "color" : "#ccc", "name" : "Title 4", "node_id" : "3" },
     {"x": 467, "y": 314, "color" : "#ccc", "name" : "Title 5", "node_id" : "4" },
