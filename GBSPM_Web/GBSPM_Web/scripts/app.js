@@ -470,7 +470,7 @@ angular.module('SampleSVG2', [])
                         collapseNode(node);
                         var cicle = findCircle(node);
                         var line = findLink(data.name + "-" + node.name);
-                        if (!node.isCollapse) {
+                        if (!node.isCollapse && !data.isCollapse) {
                             d3.select(cicle).attr("class", "collapse");
                             d3.select(line).attr("class", "collapse");
                         }
