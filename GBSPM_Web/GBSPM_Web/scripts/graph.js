@@ -40,16 +40,29 @@
                 node = svg.selectAll(".node");
 
             d3.json("Json/mockup_graph.json", function (error, graph) {
-                force
-                    .nodes(graph.nodes)
-                    .links(graph.links)
-                    .start();
+
+                var edges = [];
+                // Change target and source link to be use id instead
+                graph.links.forEach(function (e) {
+                    // Get the source and target nodes
+                    var sourceNode = graph.nodes.filter(function (n) {
+                        return n.id === e.source;
+                    })[0],
+                        targetNode = graph.nodes.filter(function (n) {
+                            return n.id === e.target;
+                        })[0];
+
+                    // Add the edge to the array
+                    edges.push({ source: sourceNode, target: targetNode, isCritical: e.isCritical, color: e.color });
+                });
+
+                force.nodes(graph.nodes).links(edges).start();
 
                 // To fixed position by node has no gravity
-                force.gravity(0);
+                force.gravity(0);                
 
                 // Manage all links properties
-                link = link.data(graph.links)
+                link = link.data(edges)
                   .enter().append("line")
                     .attr("class", "link")
                     .style("stroke", function (d) { return d.isCritical ? "red" : "#000"; });
@@ -76,7 +89,6 @@
 
                 // Manage all right click event with context menu
                 node.on("contextmenu", function (data, index) {
-                    //alert(data.node_id + " x : " + data.x + " y : " + data.y);
                     var position = d3.mouse(this);
                     d3.select('#my_custom_menu')
                       .style('position', 'absolute')
@@ -84,16 +96,15 @@
                       .style('top', position[1] + "px")
                       .style('display', 'inline-block')
                        .style('color', 'blue')
-                        .append("h4").text('Name : ' + data.name + ' ID : ' + data.node_id)
+                        .append("h4").text('Name : ' + data.name + ' ID : ' + data.id)
                       .on('mouseleave', function () {
                           d3.select(this).remove();
                       });
 
                     d3.event.preventDefault();
                 });
-            });
+            });            
             
-
             function tick() {
                 link.attr("x1", function (d) { return d.source.x; })
                     .attr("y1", function (d) { return d.source.y; })
@@ -109,7 +120,8 @@
             }
 
             function dblclick(d) {
-                d3.select(this).classed("selected", d.fixed = false);
+                alert(d.weight);
+                d3.select(this).classed("selected", d.fixed = !d.fixed);
             }
 
             function dragstart(d) {
