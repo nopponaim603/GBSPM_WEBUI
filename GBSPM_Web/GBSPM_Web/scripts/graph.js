@@ -17,7 +17,7 @@
 })
 .directive('force', function () {
     return {
-        template: 'Name: {{customer.name}} Address: {{customer.address}}',
+        template: "",//'Name: {{customer.name}} Address: {{customer.address}}',
         link: function (scope, element, attrs) {
             var width = 1280,
             height = 800;
@@ -92,8 +92,8 @@
                     var position = d3.mouse(this);
                     d3.select('#my_custom_menu')
                       .style('position', 'absolute')
-                      .style('left', position[0] + "px")
-                      .style('top', position[1] + "px")
+                      .style('left', position[0] + 200 + "px")
+                      .style('top', position[1] + 100 + "px")
                       .style('display', 'inline-block')
                        .style('color', 'blue')
                         .append("h4").text('Name : ' + data.name + ' ID : ' + data.id)
