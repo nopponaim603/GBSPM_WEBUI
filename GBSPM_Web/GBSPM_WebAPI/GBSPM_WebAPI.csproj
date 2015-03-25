@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -46,11 +49,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -109,12 +115,59 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\WorkItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChangeHistory.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\gbspm.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gbspm.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\gbspm.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\gbspm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gbspm.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IPersonRepository.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonRepository.cs" />
+    <Compile Include="Models\Position.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Right.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Status.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkItem.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkItemGroup.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkItemModel.cs" />
+    <Compile Include="Models\WorkItemType.cs">
+      <DependentUpon>gbspm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +189,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\gbspm.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>gbspm.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\gbspm.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>gbspm.edmx</DependentUpon>
+      <LastGenOutput>gbspm.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\gbspm.edmx.diagram">
+      <DependentUpon>gbspm.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\gbspm.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>gbspm.edmx</DependentUpon>
+      <LastGenOutput>gbspm.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

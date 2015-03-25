@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GBSPM_DEVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="GBSPM_DEVModelStoreContainer">
+    <EntitySet Name="ChangeHistory" EntityType="GBSPM_DEVModel.Store.ChangeHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Position" EntityType="GBSPM_DEVModel.Store.Position" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Project" EntityType="GBSPM_DEVModel.Store.Project" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectUser" EntityType="GBSPM_DEVModel.Store.ProjectUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Right" EntityType="GBSPM_DEVModel.Store.Right" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Status" EntityType="GBSPM_DEVModel.Store.Status" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="GBSPM_DEVModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="GBSPM_DEVModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserUserRight" EntityType="GBSPM_DEVModel.Store.UserUserRight" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkItem" EntityType="GBSPM_DEVModel.Store.WorkItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkItemGroup" EntityType="GBSPM_DEVModel.Store.WorkItemGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkItemType" EntityType="GBSPM_DEVModel.Store.WorkItemType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ChangeHistory_Project" Association="GBSPM_DEVModel.Store.FK_ChangeHistory_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ChangeHistory" EntitySet="ChangeHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangeHistory_Status" Association="GBSPM_DEVModel.Store.FK_ChangeHistory_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="ChangeHistory" EntitySet="ChangeHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangeHistory_User" Association="GBSPM_DEVModel.Store.FK_ChangeHistory_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ChangeHistory" EntitySet="ChangeHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangeHistory_WorkItem" Association="GBSPM_DEVModel.Store.FK_ChangeHistory_WorkItem">
+      <End Role="WorkItem" EntitySet="WorkItem" />
+      <End Role="ChangeHistory" EntitySet="ChangeHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangeHistory_WorkItemType" Association="GBSPM_DEVModel.Store.FK_ChangeHistory_WorkItemType">
+      <End Role="WorkItemType" EntitySet="WorkItemType" />
+      <End Role="ChangeHistory" EntitySet="ChangeHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectUser_Project" Association="GBSPM_DEVModel.Store.FK_ProjectUser_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectUser" EntitySet="ProjectUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectUser_User" Association="GBSPM_DEVModel.Store.FK_ProjectUser_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ProjectUser" EntitySet="ProjectUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Position" Association="GBSPM_DEVModel.Store.FK_User_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserRight_Right" Association="GBSPM_DEVModel.Store.FK_UserUserRight_Right">
+      <End Role="Right" EntitySet="Right" />
+      <End Role="UserUserRight" EntitySet="UserUserRight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserRight_User" Association="GBSPM_DEVModel.Store.FK_UserUserRight_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserUserRight" EntitySet="UserUserRight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkItem_Project" Association="GBSPM_DEVModel.Store.FK_WorkItem_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="WorkItem" EntitySet="WorkItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkItem_Status" Association="GBSPM_DEVModel.Store.FK_WorkItem_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="WorkItem" EntitySet="WorkItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkItem_User" Association="GBSPM_DEVModel.Store.FK_WorkItem_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="WorkItem" EntitySet="WorkItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkItem_WorkItemGroup" Association="GBSPM_DEVModel.Store.FK_WorkItem_WorkItemGroup">
+      <End Role="WorkItemGroup" EntitySet="WorkItemGroup" />
+      <End Role="WorkItem" EntitySet="WorkItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkItem_WorkItemType" Association="GBSPM_DEVModel.Store.FK_WorkItem_WorkItemType">
+      <End Role="WorkItemType" EntitySet="WorkItemType" />
+      <End Role="WorkItem" EntitySet="WorkItem" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ChangeHistory">
+    <Key>
+      <PropertyRef Name="ChangeId" />
+    </Key>
+    <Property Name="ChangeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="WorkItemId" Type="int" Nullable="false" />
+    <Property Name="WorkItemTypeId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="AssignTo" Type="int" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="EstimateTime" Type="decimal" Scale="2" />
+    <Property Name="ActualTime" Type="decimal" Scale="2" />
+    <Property Name="ChangeTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="PositionId" />
+    </Key>
+    <Property Name="PositionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ProjectUser">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Right">
+    <Key>
+      <PropertyRef Name="RightId" />
+    </Key>
+    <Property Name="RightId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="PositionId" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserUserRight">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RightId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RightId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkItem">
+    <Key>
+      <PropertyRef Name="WorkItemId" />
+    </Key>
+    <Property Name="WorkItemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="WorkItemTypeId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="AssignTo" Type="int" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="EstimateTime" Type="decimal" Scale="2" />
+    <Property Name="ActualTime" Type="decimal" Scale="2" />
+    <Property Name="WorkItemGroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkItemGroup">
+    <Key>
+      <PropertyRef Name="WorkItemGroupId" />
+    </Key>
+    <Property Name="WorkItemGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="nvarchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="WorkItemType">
+    <Key>
+      <PropertyRef Name="WorkItemTypeId" />
+    </Key>
+    <Property Name="WorkItemTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_ChangeHistory_Project">
+    <End Role="Project" Type="GBSPM_DEVModel.Store.Project" Multiplicity="1" />
+    <End Role="ChangeHistory" Type="GBSPM_DEVModel.Store.ChangeHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="ChangeHistory">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangeHistory_Status">
+    <End Role="Status" Type="GBSPM_DEVModel.Store.Status" Multiplicity="1" />
+    <End Role="ChangeHistory" Type="GBSPM_DEVModel.Store.ChangeHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="ChangeHistory">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangeHistory_User">
+    <End Role="User" Type="GBSPM_DEVModel.Store.User" Multiplicity="0..1" />
+    <End Role="ChangeHistory" Type="GBSPM_DEVModel.Store.ChangeHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ChangeHistory">
+        <PropertyRef Name="AssignTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangeHistory_WorkItem">
+    <End Role="WorkItem" Type="GBSPM_DEVModel.Store.WorkItem" Multiplicity="1" />
+    <End Role="ChangeHistory" Type="GBSPM_DEVModel.Store.ChangeHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkItem">
+        <PropertyRef Name="WorkItemId" />
+      </Principal>
+      <Dependent Role="ChangeHistory">
+        <PropertyRef Name="WorkItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangeHistory_WorkItemType">
+    <End Role="WorkItemType" Type="GBSPM_DEVModel.Store.WorkItemType" Multiplicity="1" />
+    <End Role="ChangeHistory" Type="GBSPM_DEVModel.Store.ChangeHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkItemType">
+        <PropertyRef Name="WorkItemTypeId" />
+      </Principal>
+      <Dependent Role="ChangeHistory">
+        <PropertyRef Name="WorkItemTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectUser_Project">
+    <End Role="Project" Type="GBSPM_DEVModel.Store.Project" Multiplicity="1" />
+    <End Role="ProjectUser" Type="GBSPM_DEVModel.Store.ProjectUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="ProjectUser">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectUser_User">
+    <End Role="User" Type="GBSPM_DEVModel.Store.User" Multiplicity="1" />
+    <End Role="ProjectUser" Type="GBSPM_DEVModel.Store.ProjectUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ProjectUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Position">
+    <End Role="Position" Type="GBSPM_DEVModel.Store.Position" Multiplicity="1" />
+    <End Role="User" Type="GBSPM_DEVModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUserRight_Right">
+    <End Role="Right" Type="GBSPM_DEVModel.Store.Right" Multiplicity="1" />
+    <End Role="UserUserRight" Type="GBSPM_DEVModel.Store.UserUserRight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Right">
+        <PropertyRef Name="RightId" />
+      </Principal>
+      <Dependent Role="UserUserRight">
+        <PropertyRef Name="RightId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUserRight_User">
+    <End Role="User" Type="GBSPM_DEVModel.Store.User" Multiplicity="1" />
+    <End Role="UserUserRight" Type="GBSPM_DEVModel.Store.UserUserRight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserUserRight">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkItem_Project">
+    <End Role="Project" Type="GBSPM_DEVModel.Store.Project" Multiplicity="1" />
+    <End Role="WorkItem" Type="GBSPM_DEVModel.Store.WorkItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="WorkItem">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkItem_Status">
+    <End Role="Status" Type="GBSPM_DEVModel.Store.Status" Multiplicity="1" />
+    <End Role="WorkItem" Type="GBSPM_DEVModel.Store.WorkItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="WorkItem">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkItem_User">
+    <End Role="User" Type="GBSPM_DEVModel.Store.User" Multiplicity="0..1" />
+    <End Role="WorkItem" Type="GBSPM_DEVModel.Store.WorkItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="WorkItem">
+        <PropertyRef Name="AssignTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkItem_WorkItemGroup">
+    <End Role="WorkItemGroup" Type="GBSPM_DEVModel.Store.WorkItemGroup" Multiplicity="1" />
+    <End Role="WorkItem" Type="GBSPM_DEVModel.Store.WorkItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkItemGroup">
+        <PropertyRef Name="WorkItemGroupId" />
+      </Principal>
+      <Dependent Role="WorkItem">
+        <PropertyRef Name="WorkItemGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkItem_WorkItemType">
+    <End Role="WorkItemType" Type="GBSPM_DEVModel.Store.WorkItemType" Multiplicity="1" />
+    <End Role="WorkItem" Type="GBSPM_DEVModel.Store.WorkItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkItemType">
+        <PropertyRef Name="WorkItemTypeId" />
+      </Principal>
+      <Dependent Role="WorkItem">
+        <PropertyRef Name="WorkItemTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -24,3 +24,5 @@ E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.W
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_WebAPI.csprojResolveAssemblyReference.cache
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_WebAPI.dll
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_WebAPI.pdb
+E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\EntityFramework.dll
+E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\EntityFramework.xml
