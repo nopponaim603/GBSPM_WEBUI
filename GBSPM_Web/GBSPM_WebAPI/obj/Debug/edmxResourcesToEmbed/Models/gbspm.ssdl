@@ -7,7 +7,6 @@
     <EntitySet Name="ProjectUser" EntityType="GBSPM_DEVModel.Store.ProjectUser" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Right" EntityType="GBSPM_DEVModel.Store.Right" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Status" EntityType="GBSPM_DEVModel.Store.Status" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="GBSPM_DEVModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="GBSPM_DEVModel.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserUserRight" EntityType="GBSPM_DEVModel.Store.UserUserRight" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkItem" EntityType="GBSPM_DEVModel.Store.WorkItem" store:Type="Tables" Schema="dbo" />
@@ -127,16 +126,6 @@
     </Key>
     <Property Name="StatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="User">
     <Key>

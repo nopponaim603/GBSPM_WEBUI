@@ -5,7 +5,6 @@ c:\users\gtx101\documents\visual studio 2012\Projects\GBSPM_Web\GBSPM_Web\obj\De
 c:\users\gtx101\documents\visual studio 2012\Projects\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.pdb
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\GBSPM_Web.dll
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\GBSPM_Web.pdb
-E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.csprojResolveAssemblyReference.cache
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.dll
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.pdb
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\Newtonsoft.Json.dll

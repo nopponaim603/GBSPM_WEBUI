@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using GBSPM_WebAPI.Models;
+using GBSPM_WebAPI.Models.DataModel;
 
 namespace GBSPM_WebAPI.Controllers
 {
@@ -17,13 +18,13 @@ namespace GBSPM_WebAPI.Controllers
         private GBSPMEntities db = new GBSPMEntities();
 
         // GET api/WorkItem
-        public IEnumerable<WorkItemModel> GetWorkItems()
+        public IEnumerable<WorkItemEntity> GetWorkItems()
         {
             var workitems = db.WorkItems;
-            List<WorkItemModel> result = new List<WorkItemModel>();
+            List<WorkItemEntity> result = new List<WorkItemEntity>();
             foreach (var item in workitems)
             {
-                result.Add(new WorkItemModel() { Description = item.Description });
+                result.Add(new WorkItemEntity() { WorkItemId = item.WorkItemId, Description = item.Description });
             }
             return result.AsEnumerable();
         }

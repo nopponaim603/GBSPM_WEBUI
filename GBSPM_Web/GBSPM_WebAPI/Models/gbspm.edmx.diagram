@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="GBSPM_DEVModel.Project" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GBSPM_DEVModel.Right" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GBSPM_DEVModel.Status" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.sysdiagram" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GBSPM_DEVModel.User" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItem" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItemGroup" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />

@@ -6,7 +6,6 @@
     <EntitySet Name="Projects" EntityType="GBSPM_DEVModel.Project" />
     <EntitySet Name="Rights" EntityType="GBSPM_DEVModel.Right" />
     <EntitySet Name="Status" EntityType="GBSPM_DEVModel.Status" />
-    <EntitySet Name="sysdiagrams" EntityType="GBSPM_DEVModel.sysdiagram" />
     <EntitySet Name="Users" EntityType="GBSPM_DEVModel.User" />
     <EntitySet Name="WorkItems" EntityType="GBSPM_DEVModel.WorkItem" />
     <EntitySet Name="WorkItemGroups" EntityType="GBSPM_DEVModel.WorkItemGroup" />
@@ -121,16 +120,6 @@
     <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="ChangeHistories" Relationship="GBSPM_DEVModel.FK_ChangeHistory_Status" FromRole="Status" ToRole="ChangeHistory" />
     <NavigationProperty Name="WorkItems" Relationship="GBSPM_DEVModel.FK_WorkItem_Status" FromRole="Status" ToRole="WorkItem" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>

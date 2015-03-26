@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -122,6 +123,15 @@
     <Compile Include="Models\ChangeHistory.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataModel\ChangeHistoryEntity.cs" />
+    <Compile Include="Models\DataModel\PositionEntity.cs" />
+    <Compile Include="Models\DataModel\ProjectEntity.cs" />
+    <Compile Include="Models\DataModel\RightEntity.cs" />
+    <Compile Include="Models\DataModel\StatusEntity.cs" />
+    <Compile Include="Models\DataModel\UserEntity.cs" />
+    <Compile Include="Models\DataModel\WorkItemEntity.cs" />
+    <Compile Include="Models\DataModel\WorkItemGroupEntity.cs" />
+    <Compile Include="Models\DataModel\WorkItemTypeEntity.cs" />
     <Compile Include="Models\gbspm.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,6 +148,7 @@
       <DependentUpon>gbspm.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IPersonRepository.cs" />
+    <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonRepository.cs" />
     <Compile Include="Models\Position.cs">
@@ -158,13 +169,13 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\WorkItem.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WorkItemGroup.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WorkItemModel.cs" />
     <Compile Include="Models\WorkItemType.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
