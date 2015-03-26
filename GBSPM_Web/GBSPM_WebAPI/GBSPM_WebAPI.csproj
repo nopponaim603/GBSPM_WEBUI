@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AllowCrossSiteJsonAttribute .cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkItemController.cs" />

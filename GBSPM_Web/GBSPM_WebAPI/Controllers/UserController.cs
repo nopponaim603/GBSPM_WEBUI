@@ -10,9 +10,11 @@ using System.Web;
 using System.Web.Http;
 using GBSPM_WebAPI.Models;
 using GBSPM_WebAPI.Models.DataModel;
+using GBSPM_WebAPI.App_Start;
 
 namespace GBSPM_WebAPI.Controllers
 {
+    [AllowCrossSiteJsonAttribute]
     public class UserController : ApiController
     {
         private GBSPMEntities db = new GBSPMEntities();

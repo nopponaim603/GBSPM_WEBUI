@@ -14,6 +14,11 @@ app.config(function ($routeProvider) {
         templateUrl: '/Views/displaygraph_sample.html',
         controller: 'graphController'
     })
+
+    .when('/manageUser', {
+        templateUrl: '/Views/userlist.html',
+        controller: 'userController'
+    })
 });
 
 app.controller('homeController', function ($scope, $http) {
@@ -29,6 +34,24 @@ app.controller('homeController', function ($scope, $http) {
     error(function (data, status, headers, config) {
         console.log("failed");
     });
+});
+
+app.controller('userController', function ($scope, $http) {
+    $scope.users;
+    $scope.title = "Display User";
+    $scope.subTitle = "All about user is here.";
+ 
+    $http.get('http://localhost:50147/api/user').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.users = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
 });
 
 app.controller('graphController', function ($scope, $http) {

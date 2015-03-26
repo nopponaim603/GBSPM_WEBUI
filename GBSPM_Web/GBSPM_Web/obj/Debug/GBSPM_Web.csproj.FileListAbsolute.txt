@@ -15,3 +15,4 @@ E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Net.Http
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.xml
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.WebHost.dll
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.WebHost.xml
+E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.csprojResolveAssemblyReference.cache
