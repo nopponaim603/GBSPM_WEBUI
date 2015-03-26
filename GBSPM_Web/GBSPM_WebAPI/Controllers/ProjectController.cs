@@ -15,35 +15,34 @@ using GBSPM_WebAPI.Models.DataModel;
 namespace GBSPM_WebAPI.Controllers
 {
     [AllowCrossSiteJsonAttribute]
-    public class WorkItemController : ApiController
+    public class ProjectController : ApiController
     {
         private GBSPMEntities db = new GBSPMEntities();
-        private IWorkItemRepository dbContext = new WorkItemRepository();
-
-        // GET api/WorkItem
-        public IEnumerable<WorkItemEntity> GetWorkItems()
+        private IProjectRepositiory dbContext = new ProjectRepositiory();
+        // GET api/Project
+        public IEnumerable<ProjectEntity> GetProjects()
         {
             return dbContext.GetAll(); ;
         }
 
-        // GET api/WorkItem/5
-        public WorkItemEntity GetWorkItem(int id)
+        // GET api/Project/5
+        public ProjectEntity GetProject(int id)
         {
-            WorkItemEntity workitem = dbContext.GetWorkItemById(id);
-            if (workitem == null)
+            ProjectEntity project = dbContext.GetProjectById(id);
+            if (project == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return workitem;
+            return project;
         }
 
-        // PUT api/WorkItem/5
-        public HttpResponseMessage PutWorkItem(int id, WorkItem workitem)
+        // PUT api/Project/5
+        public HttpResponseMessage PutProject(int id, Project project)
         {
-            if (ModelState.IsValid && id == workitem.WorkItemId)
+            if (ModelState.IsValid && id == project.ProjectId)
             {
-                db.Entry(workitem).State = EntityState.Modified;
+                db.Entry(project).State = EntityState.Modified;
 
                 try
                 {
@@ -62,16 +61,16 @@ namespace GBSPM_WebAPI.Controllers
             }
         }
 
-        // POST api/WorkItem
-        public HttpResponseMessage PostWorkItem(WorkItem workitem)
+        // POST api/Project
+        public HttpResponseMessage PostProject(Project project)
         {
             if (ModelState.IsValid)
             {
-                db.WorkItems.Add(workitem);
+                db.Projects.Add(project);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, workitem);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = workitem.WorkItemId }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, project);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = project.ProjectId }));
                 return response;
             }
             else
@@ -80,16 +79,16 @@ namespace GBSPM_WebAPI.Controllers
             }
         }
 
-        // DELETE api/WorkItem/5
-        public HttpResponseMessage DeleteWorkItem(int id)
+        // DELETE api/Project/5
+        public HttpResponseMessage DeleteProject(int id)
         {
-            WorkItem workitem = db.WorkItems.Find(id);
-            if (workitem == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.WorkItems.Remove(workitem);
+            db.Projects.Remove(project);
 
             try
             {
@@ -100,7 +99,7 @@ namespace GBSPM_WebAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, workitem);
+            return Request.CreateResponse(HttpStatusCode.OK, project);
         }
 
         protected override void Dispose(bool disposing)

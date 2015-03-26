@@ -15,35 +15,36 @@ using GBSPM_WebAPI.Models.DataModel;
 namespace GBSPM_WebAPI.Controllers
 {
     [AllowCrossSiteJsonAttribute]
-    public class WorkItemController : ApiController
+    public class PositionController : ApiController
     {
         private GBSPMEntities db = new GBSPMEntities();
-        private IWorkItemRepository dbContext = new WorkItemRepository();
 
-        // GET api/WorkItem
-        public IEnumerable<WorkItemEntity> GetWorkItems()
+        private IPositionRepository dbContext = new PositionRepository();
+
+        // GET api/Position
+        public IEnumerable<PositionEntity> GetPositions()
         {
-            return dbContext.GetAll(); ;
+            return dbContext.GetAll();
         }
 
-        // GET api/WorkItem/5
-        public WorkItemEntity GetWorkItem(int id)
+        // GET api/Position/5
+        public PositionEntity GetPosition(int id)
         {
-            WorkItemEntity workitem = dbContext.GetWorkItemById(id);
-            if (workitem == null)
+            PositionEntity position = dbContext.GetPositionById(id);
+            if (position == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return workitem;
+            return position;
         }
 
-        // PUT api/WorkItem/5
-        public HttpResponseMessage PutWorkItem(int id, WorkItem workitem)
+        // PUT api/Position/5
+        public HttpResponseMessage PutPosition(int id, Position position)
         {
-            if (ModelState.IsValid && id == workitem.WorkItemId)
+            if (ModelState.IsValid && id == position.PositionId)
             {
-                db.Entry(workitem).State = EntityState.Modified;
+                db.Entry(position).State = EntityState.Modified;
 
                 try
                 {
@@ -62,16 +63,16 @@ namespace GBSPM_WebAPI.Controllers
             }
         }
 
-        // POST api/WorkItem
-        public HttpResponseMessage PostWorkItem(WorkItem workitem)
+        // POST api/Position
+        public HttpResponseMessage PostPosition(Position position)
         {
             if (ModelState.IsValid)
             {
-                db.WorkItems.Add(workitem);
+                db.Positions.Add(position);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, workitem);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = workitem.WorkItemId }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, position);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = position.PositionId }));
                 return response;
             }
             else
@@ -80,16 +81,16 @@ namespace GBSPM_WebAPI.Controllers
             }
         }
 
-        // DELETE api/WorkItem/5
-        public HttpResponseMessage DeleteWorkItem(int id)
+        // DELETE api/Position/5
+        public HttpResponseMessage DeletePosition(int id)
         {
-            WorkItem workitem = db.WorkItems.Find(id);
-            if (workitem == null)
+            Position position = db.Positions.Find(id);
+            if (position == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.WorkItems.Remove(workitem);
+            db.Positions.Remove(position);
 
             try
             {
@@ -100,7 +101,7 @@ namespace GBSPM_WebAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, workitem);
+            return Request.CreateResponse(HttpStatusCode.OK, position);
         }
 
         protected override void Dispose(bool disposing)

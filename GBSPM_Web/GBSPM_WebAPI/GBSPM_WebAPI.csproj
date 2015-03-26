@@ -116,6 +116,8 @@
   <ItemGroup>
     <Compile Include="App_Start\AllowCrossSiteJsonAttribute .cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkItemController.cs" />
     <Compile Include="Global.asax.cs">
@@ -149,15 +151,24 @@
       <DependentUpon>gbspm.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IPersonRepository.cs" />
+    <Compile Include="Models\IPositionRepository.cs" />
+    <Compile Include="Models\IProjectRepositiory.cs" />
+    <Compile Include="Models\IRightRepository.cs" />
+    <Compile Include="Models\IStatusRepository.cs" />
     <Compile Include="Models\IUserRepository.cs" />
+    <Compile Include="Models\IWorkItemGroupRepository.cs" />
+    <Compile Include="Models\IWorkItemRepository.cs" />
+    <Compile Include="Models\IWorkItemTypeRepository.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonRepository.cs" />
     <Compile Include="Models\Position.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PositionRepository.cs" />
     <Compile Include="Models\Project.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProjectRepositiory.cs" />
     <Compile Include="Models\Right.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
@@ -177,6 +188,7 @@
     <Compile Include="Models\WorkItemGroup.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkItemRepository.cs" />
     <Compile Include="Models\WorkItemType.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>

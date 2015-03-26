@@ -19,6 +19,21 @@ app.config(function ($routeProvider) {
         templateUrl: '/Views/userlist.html',
         controller: 'userController'
     })
+
+    .when('/PositionList', {
+        templateUrl: '/Views/PositionList.html',
+        controller: 'positionController'
+    })
+
+    .when('/ProjectList', {
+        templateUrl: '/Views/ProjectList.html',
+        controller: 'projectController'
+    })
+
+    .when('/WorkItemList', {
+        templateUrl: '/Views/WorkItemList.html',
+        controller: 'workItemController'
+    })
 });
 
 app.controller('homeController', function ($scope, $http) {
@@ -40,7 +55,7 @@ app.controller('userController', function ($scope, $http) {
     $scope.users;
     $scope.title = "Display User";
     $scope.subTitle = "All about user is here.";
- 
+
     $http.get('http://localhost:50147/api/user').
   success(function (data, status, headers, config) {
       // this callback will be called asynchronously
@@ -54,10 +69,64 @@ app.controller('userController', function ($scope, $http) {
   });
 });
 
+app.controller('positionController', function ($scope, $http) {
+    $scope.positions;
+    $scope.title = "Display Position";
+    $scope.subTitle = "All about position is here.";
+
+    $http.get('http://localhost:50147/api/position').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.positions = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
+});
+
+app.controller('projectController', function ($scope, $http) {
+    $scope.projects;
+    $scope.title = "Display Project";
+    $scope.subTitle = "All about project is here.";
+
+    $http.get('http://localhost:50147/api/project').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.projects = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
+});
+
+app.controller('workItemController', function ($scope, $http) {
+    $scope.workitems;
+    $scope.title = "Display Project";
+    $scope.subTitle = "All about project is here.";
+
+    $http.get('http://localhost:50147/api/workitem').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.workitems = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
+});
+
 app.controller('graphController', function ($scope, $http) {
     $scope.title = "Display Graph";
     $scope.subTitle = "This is the mockup of relational graph.";
-     //$http.get('Json/graph.json').success(function (data) {
+    //$http.get('Json/graph.json').success(function (data) {
     //    // you can do some processing here
     //    $scope.graph = data;
     //}).
@@ -109,7 +178,7 @@ app.controller('graphController', function ($scope, $http) {
                 force.nodes(graph.nodes).links(edges).start();
 
                 // To fixed position by node has no gravity
-                force.gravity(0);                
+                force.gravity(0);
 
                 // Manage all links properties
                 link = link.data(edges)
@@ -153,8 +222,8 @@ app.controller('graphController', function ($scope, $http) {
 
                     d3.event.preventDefault();
                 });
-            });            
-            
+            });
+
             function tick() {
                 link.attr("x1", function (d) { return d.source.x; })
                     .attr("y1", function (d) { return d.source.y; })
