@@ -118,8 +118,12 @@
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\RightController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkItemController.cs" />
+    <Compile Include="Controllers\WorkItemGroupController.cs" />
+    <Compile Include="Controllers\WorkItemTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,9 +176,11 @@
     <Compile Include="Models\Right.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RightRepository.cs" />
     <Compile Include="Models\Status.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusRepository.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
@@ -188,10 +194,12 @@
     <Compile Include="Models\WorkItemGroup.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkItemGroupRepository.cs" />
     <Compile Include="Models\WorkItemRepository.cs" />
     <Compile Include="Models\WorkItemType.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkItemTypeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

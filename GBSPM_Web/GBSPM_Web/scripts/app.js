@@ -209,16 +209,17 @@ app.controller('graphController', function ($scope, $http) {
                 // Manage all right click event with context menu
                 node.on("contextmenu", function (data, index) {
                     var position = d3.mouse(this);
-                    d3.select('#my_custom_menu')
+                    d3.select('#contextMenu')
                       .style('position', 'absolute')
                       .style('left', position[0] + 200 + "px")
                       .style('top', position[1] + 100 + "px")
                       .style('display', 'inline-block')
-                       .style('color', 'blue')
-                        .append("h4").text('Name : ' + data.name + ' ID : ' + data.id)
                       .on('mouseleave', function () {
-                          d3.select(this).remove();
+                          //d3.select(this).remove();
+                          d3.select(this).style('display', 'none');
                       });
+
+                   
 
                     d3.event.preventDefault();
                 });
