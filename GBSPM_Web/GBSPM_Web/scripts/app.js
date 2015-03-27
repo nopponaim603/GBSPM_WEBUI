@@ -34,6 +34,26 @@ app.config(function ($routeProvider) {
         templateUrl: '/Views/WorkItemList.html',
         controller: 'workItemController'
     })
+
+    .when('/RightList', {
+        templateUrl: '/Views/RightList.html',
+        controller: 'rightController'
+    })
+
+    .when('/StatusList', {
+        templateUrl: '/Views/StatusList.html',
+        controller: 'statusController'
+    })
+
+    .when('/WorkItemGroupList', {
+        templateUrl: '/Views/WorkItemGroupList.html',
+        controller: 'workItemGroupController'
+    })
+
+    .when('/WorkItemTypeList', {
+        templateUrl: '/Views/WorkItemTypeList.html',
+        controller: 'workItemTypeController'
+    })
 });
 
 app.controller('homeController', function ($scope, $http) {
@@ -107,14 +127,86 @@ app.controller('projectController', function ($scope, $http) {
 
 app.controller('workItemController', function ($scope, $http) {
     $scope.workitems;
-    $scope.title = "Display Project";
-    $scope.subTitle = "All about project is here.";
+    $scope.title = "Display Work Item";
+    $scope.subTitle = "All about work items is here.";
 
     $http.get('http://localhost:50147/api/workitem').
   success(function (data, status, headers, config) {
       // this callback will be called asynchronously
       // when the response is available
       $scope.workitems = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
+});
+
+app.controller('rightController', function ($scope, $http) {
+    $scope.rights;
+    $scope.title = "Display All Right";
+    $scope.subTitle = "All about rights is here.";
+
+    $http.get('http://localhost:50147/api/right').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.rights = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
+});
+
+app.controller('statusController', function ($scope, $http) {
+    $scope.statuses;
+    $scope.title = "Display All Staus";
+    $scope.subTitle = "All about status is here.";
+
+    $http.get('http://localhost:50147/api/status').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.statuses = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
+});
+
+app.controller('workItemGroupController', function ($scope, $http) {
+    $scope.workitemgroups;
+    $scope.title = "Display All Work Item Group";
+    $scope.subTitle = "All about work item group is here.";
+
+    $http.get('http://localhost:50147/api/workitemgroup').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.workitemgroups = data;
+  }).
+  error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("failed");
+  });
+});
+
+app.controller('workItemTypeController', function ($scope, $http) {
+    $scope.workitemtypes;
+    $scope.title = "Display All Work Item Type";
+    $scope.subTitle = "All about work item type is here.";
+
+    $http.get('http://localhost:50147/api/workitemtype').
+  success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.workitemtypes = data;
   }).
   error(function (data, status, headers, config) {
       // called asynchronously if an error occurs
