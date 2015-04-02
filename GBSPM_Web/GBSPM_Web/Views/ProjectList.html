@@ -26,10 +26,12 @@
                                 <tr style="font-size: 18px">
                                     <th>Name</th>
                                     <th>Description</th>
+                                    <th></th>
                                 </tr>
                                 <tr ng-repeat="x in projects | filter:test | orderBy:'Name'">
                                     <td style="width: 30%">{{ x.Name }}</td>
                                     <td style="width: 70%">{{ x.Description }}</td>
+                                    <td><button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button></td>
                                 </tr>
                             </table>
                             <div class="box-footer clearfix">

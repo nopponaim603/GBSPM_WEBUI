@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace GBSPM_WebAPI.Models
 {
@@ -52,12 +53,32 @@ namespace GBSPM_WebAPI.Models
 
         public DataModel.UserEntity AddUser(DataModel.UserEntity user)
         {
-            throw new NotImplementedException();
+            var userToUpdate = dataContext.Users.FirstOrDefault(c => c.UserId == user.UserId);
+            if (userToUpdate != null)
+            {
+                userToUpdate.FirstName = user.FirstName;
+                userToUpdate.LastName = user.LastName;
+                userToUpdate.Email = user.Email;
+                dataContext.SaveChanges();
+            }
+
+            return user;
         }
 
         public bool UpdateUser(DataModel.UserEntity user)
         {
-            throw new NotImplementedException();
+            var userToUpdate = dataContext.Users.FirstOrDefault(c => c.UserId == user.UserId);
+            if (userToUpdate != null)
+            {
+                userToUpdate.FirstName = user.FirstName;
+                userToUpdate.LastName = user.LastName;
+                userToUpdate.Email = user.Email;
+                dataContext.SaveChanges();
+                dataContext.Entry(userToUpdate).State = EntityState.Modified;
+                return true;
+            }
+
+            return false;
         }
 
         public bool DeleteUser(int id)

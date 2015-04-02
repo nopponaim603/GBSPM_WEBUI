@@ -1,0 +1,24 @@
+﻿<form name="myForm">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()"
+            aria-hidden="true">
+            ×
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{Title}}
+        </h4>
+    </div>
+    <div class="modal-body">
+        <p>FirstName : <input type="text" ng-model="data.FirstName" class="form-control" /></p>
+        <p>LastName : <input type="text" ng-model="data.LastName" class="form-control"/></p>
+        <p>Email : <input type="text" ng-model="data.Email" class="form-control" /></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="close()">
+            Close
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="submit()">
+            Submit changes
+        </button>
+    </div>
+</form>
+

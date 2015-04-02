@@ -24,9 +24,12 @@
     <script src="scripts/angular.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/angular.min.js"></script>
-    <script src="scripts/angular-route.js"></script>
+    <!--<script src="scripts/angular-route.js"></script>-->
     <script src="scripts/d3/d3.js"></script>
     <script src="scripts/d3/d3.min.js"></script>
+    <script src="scripts/angular-ui-router.js"></script>
+    <script src="scripts/angular-ui/ui-bootstrap.js">
+    </script><script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
     <style type="text/css">
         .chart
         {
@@ -59,7 +62,7 @@
     <div class="wrapper">
 
         <header class="main-header">
-            <a href="../../index.html" class="logo"><b>GB</b>SPM</a>
+            <a ui-sref="home" href="#/home" class="logo"><b>GB</b>SPM</a>
 
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -133,7 +136,7 @@
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#manageUser">
+                        <a href="#/manageUser">
                             <i class="fa fa-laptop"></i>
                             <span>Manage User</span>
                         </a>
@@ -202,7 +205,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div ng-app="mainApp">
-                <div ng-view></div>
+                <div ui-view></div>
             </div>
 
             <!-- /.content -->

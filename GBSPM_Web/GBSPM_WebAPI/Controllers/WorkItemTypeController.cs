@@ -14,7 +14,7 @@ using GBSPM_WebAPI.App_Start;
 
 namespace GBSPM_WebAPI.Controllers
 {
-    [AllowCrossSiteJsonAttribute]
+    //[AllowCrossSiteJsonAttribute]
     public class WorkItemTypeController : ApiController
     {
         private GBSPMEntities db = new GBSPMEntities();

@@ -27,11 +27,13 @@
                                     <th>Project</th>
                                     <th>Title</th>
                                     <th>Description</th>
+                                    <th></th>
                                 </tr>
                                 <tr ng-repeat="x in workitems | filter:test | orderBy:'WorkItemId'">
                                     <td style="width: 10%">{{ x.Project.Name }}</td>
                                     <td style="width: 10%">{{ x.Title }}</td>
                                     <td style="width: 80%">{{ x.Description }}</td>
+                                    <td><button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button></td>
                                 </tr>
                             </table>
                             <div class="box-footer clearfix">

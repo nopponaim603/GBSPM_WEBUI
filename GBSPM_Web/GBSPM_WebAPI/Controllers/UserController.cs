@@ -14,7 +14,6 @@ using GBSPM_WebAPI.App_Start;
 
 namespace GBSPM_WebAPI.Controllers
 {
-    [AllowCrossSiteJsonAttribute]
     public class UserController : ApiController
     {
         private GBSPMEntities db = new GBSPMEntities();
@@ -39,19 +38,19 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/User/5
-        public HttpResponseMessage PutUser(int id, User user)
+        public HttpResponseMessage PutUser(UserEntity user)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            if (id != user.UserId)
+            if (user == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            context.UpdateUser(user);
 
             try
             {
