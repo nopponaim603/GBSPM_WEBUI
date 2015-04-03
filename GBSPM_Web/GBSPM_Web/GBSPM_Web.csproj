@@ -79,6 +79,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
+    <Content Include="Controllers\user-controller.js" />
     <Content Include="DisplatRectangular.html" />
     <Content Include="DisplayGraph.html" />
     <Content Include="dist\css\AdminLTE.css" />

@@ -10,7 +10,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: '/home',
             templateUrl: '/Views/home.html',
-            controller : 'homeController'
+            controller: 'homeController'
         })
 
         .state('displayGraph', {
@@ -76,7 +76,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         })
 
-        $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/home');
 
 
     //$routeProvider
@@ -133,7 +133,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     //})
 });
 
-
 app.controller('homeController', function ($scope, $http, $modal) {
     $scope.title = "Home";
     $scope.subTitle = "All about thing is here.";
@@ -159,7 +158,24 @@ app.controller('homeController', function ($scope, $http, $modal) {
             }
         });
     }
-   
+
+    $scope.OnPut = function () {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/person/',
+            data: { Id: 1, FirstName: 'Tan', LastName: 'Ta' },
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            }
+        })
+            .success(function (data) {
+                alert('success');
+            })
+            .error(function (error, status) {
+                alert('failed');
+            });
+    }
+
 
     $http.get('Json/testdata.json').success(function (data) {
         // you can do some processing here
@@ -183,66 +199,28 @@ app.controller('modalController', function ($scope, $modalInstance, $http, item,
     };
 
     $scope.submit = function () {
-        // TODO : Create each function to control the CRUD process.
-        if (comtrolName == "EditUser") {
-            var user = $scope.data;
-            var newPerson =  { id : 1, LastName : "", FirstName : "" };
-            //$http.put('http://localhost:50147/api/person/', newPerson)
-            //.success = function () {
-            //    alert('Succes');
-            //}
-            //.error = function () {
-            //    alert('Failed');
-            //}
-
-            //$.ajax({
-            //    type: "PUT",
-            //    url: 'http://localhost:50147/api/person/',
-            //    data: JSON.stringify(newPerson),
-            //    dataType: 'json',
-            //    contentType: "application/json",
-            //    success: function (data) { alert(data); },
-            //    failure: function (errMsg) {
-            //        alert(errMsg);
-            //    }
-            //});
-        }
+        OnSubmitHandler("EditUser", $scope.data, $http, _this.$modalInstance);
     }
 
 });
 
-app.controller('userController', function ($scope, $http, $modal) {
-    $scope.users;
-    $scope.title = "Display User";
-    $scope.subTitle = "All about user is here.";
 
-    $scope.OnEdit = function myfunction(x) {
-        var modalInstance = $modal.open({
-            templateUrl: '/Views/modal-form/user-form.html',
-            controller: 'modalController',
-            resolve: {
-                item: function () {
-                    return angular.copy(x);
-                },
-                comtrolName: function () {
-                    return "EditUser";
-                }
-            }
+function OnSubmitHandler(comtrolName, data, $http, modal) {
+    if (comtrolName == "EditUser") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/user/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
         });
     }
-
-    $http.get('http://localhost:50147/api/user').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.users = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
-});
+}
 
 app.controller('positionController', function ($scope, $http, $modal) {
     $scope.positions;
@@ -571,7 +549,7 @@ app.controller('graphController', function ($scope, $http) {
                           d3.select(this).style('display', 'none');
                       });
 
-                   
+
 
                     d3.event.preventDefault();
                 });

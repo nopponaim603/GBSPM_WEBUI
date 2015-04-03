@@ -14,6 +14,7 @@ using GBSPM_WebAPI.App_Start;
 
 namespace GBSPM_WebAPI.Controllers
 {
+    //[AllowCrossSiteJsonAttribute]
     public class UserController : ApiController
     {
         private GBSPMEntities db = new GBSPMEntities();
@@ -44,17 +45,14 @@ namespace GBSPM_WebAPI.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
             if (user == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-
-            context.UpdateUser(user);
+            }            
 
             try
             {
-                db.SaveChanges();
+                context.UpdateUser(user);
             }
             catch (DbUpdateConcurrencyException ex)
             {

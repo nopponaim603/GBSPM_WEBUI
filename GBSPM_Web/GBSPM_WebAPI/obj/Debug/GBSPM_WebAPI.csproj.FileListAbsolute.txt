@@ -26,3 +26,6 @@ E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_WebAPI.pdb
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\EntityFramework.dll
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\EntityFramework.xml
+E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Cors.dll
+E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.Cors.dll
+E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.Cors.xml

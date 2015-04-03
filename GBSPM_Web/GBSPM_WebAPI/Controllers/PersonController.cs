@@ -5,9 +5,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using GBSPM_WebAPI.Models;
+using GBSPM_WebAPI.App_Start;
 
 namespace GBSPM_WebAPI.Controllers
 {
+    //[AllowCrossSiteJsonAttribute]
     public class PersonController : ApiController
     {
         static readonly IPersonRepository databasePlaceholder = new PersonRepository();
@@ -40,7 +42,7 @@ namespace GBSPM_WebAPI.Controllers
             return response;
         }
 
-
+        
         public bool PutPerson(Person person)
         {
             if (!databasePlaceholder.Update(person))
