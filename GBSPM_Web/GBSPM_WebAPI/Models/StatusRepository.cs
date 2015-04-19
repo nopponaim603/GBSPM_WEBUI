@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace GBSPM_WebAPI.Models
 {
@@ -47,7 +48,16 @@ namespace GBSPM_WebAPI.Models
 
         public bool UpdateStatus(DataModel.StatusEntity status)
         {
-            throw new NotImplementedException();
+            var _status = db.Status.FirstOrDefault(c => c.StatusId == status.StatusId);
+            if (_status != null)
+            {
+                _status.Description = status.Description;
+                db.SaveChanges();
+                db.Entry(_status).State = EntityState.Modified;
+                return true;
+            }
+
+            return false;
         }
 
         public bool DeleteStatus(int id)

@@ -17,6 +17,7 @@
             }
         });
 
+        // Manage after close the modal popup.
         modalInstance.result.then(function (group) {
             //$scope.groups.push(group)
         }, function () {

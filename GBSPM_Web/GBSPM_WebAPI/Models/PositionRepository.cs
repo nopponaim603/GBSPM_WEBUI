@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using GBSPM_WebAPI.Models.DataModel;
@@ -43,7 +44,15 @@ namespace GBSPM_WebAPI.Models
 
         public bool UpdatePosition(DataModel.PositionEntity position)
         {
-            throw new NotImplementedException();
+            var _position = dataContext.Positions.FirstOrDefault(c => c.PositionId == position.PositionId);
+            if (_position != null)
+            {
+                _position.Description = position.Description;
+                dataContext.SaveChanges();
+                dataContext.Entry(_position).State = EntityState.Modified;
+                return true;
+            }
+            return false;
         }
 
         public bool DeletePosition(int id)

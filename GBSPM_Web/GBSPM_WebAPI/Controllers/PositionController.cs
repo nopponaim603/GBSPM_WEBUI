@@ -40,27 +40,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/Position/5
-        public HttpResponseMessage PutPosition(int id, Position position)
+        public HttpResponseMessage PutPosition(PositionEntity position)
         {
-            if (ModelState.IsValid && id == position.PositionId)
+            if (!ModelState.IsValid)
             {
-                db.Entry(position).State = EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            else
+            if (position == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+            try
+            {
+                dbContext.UpdatePosition(position);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // POST api/Position

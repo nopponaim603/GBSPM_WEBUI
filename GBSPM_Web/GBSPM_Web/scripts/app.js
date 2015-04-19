@@ -187,7 +187,6 @@ app.controller('homeController', function ($scope, $http, $modal) {
 });
 
 app.controller('modalController', function ($scope, $modalInstance, $http, item, comtrolName) {
-    $scope.test = comtrolName;
     $scope.Title = comtrolName
     $scope.data = item;
     var _this = this;
@@ -199,7 +198,7 @@ app.controller('modalController', function ($scope, $modalInstance, $http, item,
     };
 
     $scope.submit = function () {
-        OnSubmitHandler("EditUser", $scope.data, $http, _this.$modalInstance);
+        OnSubmitHandler(comtrolName, $scope.data, $http, _this.$modalInstance);
     }
 
 });
@@ -210,6 +209,21 @@ function OnSubmitHandler(comtrolName, data, $http, modal) {
         $http({
             method: 'PUT',
             url: 'http://localhost:50147/api/user/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
+        });
+    }
+
+    if (comtrolName == "EditPosition") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/position/',
             data: data
         })
         .success(function (data) {

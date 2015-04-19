@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace GBSPM_WebAPI.Models
 {
@@ -47,7 +48,15 @@ namespace GBSPM_WebAPI.Models
 
         public bool UpdateRight(DataModel.RightEntity right)
         {
-            throw new NotImplementedException();
+            var _right = db.Rights.FirstOrDefault(c => c.RightId == right.RightId);
+            if (_right != null)
+            {
+                _right.Description = right.Description;
+                db.SaveChanges();
+                db.Entry(_right).State = EntityState.Modified;
+                return true;
+            }
+            return false;
         }
 
         public bool DeleteRight(int id)

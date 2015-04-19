@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using GBSPM_WebAPI.Models;
@@ -46,7 +47,16 @@ namespace GBSPM_WebAPI.Models
 
         public bool UpdateProject(DataModel.ProjectEntity project)
         {
-            throw new NotImplementedException();
+            var _project = dataContext.Projects.FirstOrDefault(c => c.ProjectId == project.ProjectId);
+            if (_project != null)
+            {
+                _project.Description = project.Description;
+                _project.Name = project.Name;
+                dataContext.SaveChanges();
+                dataContext.Entry(_project).State = EntityState.Modified;
+                return true;
+            }
+            return false;
         }
 
         public bool DeleteProject(int id)
