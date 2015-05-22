@@ -8,8 +8,12 @@
         </h4>
     </div>
     <div class="modal-body">
-        <p>Name <input type="text" ng-model="data.Name" class="form-control" /></p>
-        <p>Description <input type="text" ng-model="data.Description" class="form-control" /></p>
+        <p>Name
+            <input type="text" ng-model="data.Name" class="form-control" /></p>
+        <p>
+            Description 
+             <textarea class="form-control" rows="5" id="description" ng-model="data.Description"></textarea>
+        </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="close()">

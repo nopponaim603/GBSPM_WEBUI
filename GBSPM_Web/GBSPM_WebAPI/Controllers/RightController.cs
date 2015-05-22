@@ -39,23 +39,20 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/Right/5
-        public HttpResponseMessage PutRight(int id, Right right)
+        public HttpResponseMessage PutRight(RightEntity right)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            if (id != right.RightId)
+            if (right == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(right).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                dbContext.UpdateRight(right);
             }
             catch (DbUpdateConcurrencyException ex)
             {

@@ -219,8 +219,7 @@ function OnSubmitHandler(comtrolName, data, $http, modal) {
             alert('failed');
         });
     }
-
-    if (comtrolName == "EditPosition") {
+    else if (comtrolName == "EditPosition") {
         $http({
             method: 'PUT',
             url: 'http://localhost:50147/api/position/',
@@ -234,40 +233,49 @@ function OnSubmitHandler(comtrolName, data, $http, modal) {
             alert('failed');
         });
     }
-}
-
-app.controller('positionController', function ($scope, $http, $modal) {
-    $scope.positions;
-    $scope.title = "Display Position";
-    $scope.subTitle = "All about position is here.";
-
-    $scope.OnEdit = function myfunction(x) {
-        var modalInstance = $modal.open({
-            templateUrl: '/Views/modal-form/position-form.html',
-            controller: 'modalController',
-            resolve: {
-                item: function () {
-                    return angular.copy(x);
-                },
-                comtrolName: function () {
-                    return "EditPosition";
-                }
-            }
+    else if (comtrolName == "EditProject") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/project/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
         });
     }
-
-    $http.get('http://localhost:50147/api/position').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.positions = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
-});
+    else if (comtrolName == "EditRights") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/right/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
+        });
+    }
+    else if (comtrolName == "EditStatus") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/status/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
+        });
+    }
+}
 
 app.controller('projectController', function ($scope, $http, $modal) {
     $scope.projects;
@@ -287,19 +295,32 @@ app.controller('projectController', function ($scope, $http, $modal) {
                 }
             }
         });
+
+        // Manage after close the modal popup.
+        modalInstance.result.then(function (group) {
+            //$scope.groups.push(group)
+        }, function () {
+            // the modal was dismissed
+            InjectData();
+        });
     }
 
-    $http.get('http://localhost:50147/api/project').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.projects = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
+    function InjectData() {
+        $http.get('http://localhost:50147/api/project').
+        success(function (data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            $scope.projects = data;
+        }).
+        error(function (data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log("failed");
+        });
+    }
+
+    InjectData();
+  
 });
 
 app.controller('workItemController', function ($scope, $http, $modal) {
@@ -353,19 +374,31 @@ app.controller('rightController', function ($scope, $http, $modal) {
                 }
             }
         });
+
+        modalInstance.result.then(function (group) {
+            //$scope.groups.push(group)
+        }, function () {
+            // the modal was dismissed
+            InjectData();
+        });
     }
 
-    $http.get('http://localhost:50147/api/right').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.rights = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
+    function InjectData() {
+
+        $http.get('http://localhost:50147/api/right').
+      success(function (data, status, headers, config) {
+          // this callback will be called asynchronously
+          // when the response is available
+          $scope.rights = data;
+      }).
+      error(function (data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.log("failed");
+      });
+    }
+
+    InjectData();
 });
 
 app.controller('statusController', function ($scope, $http, $modal) {
@@ -386,19 +419,32 @@ app.controller('statusController', function ($scope, $http, $modal) {
                 }
             }
         });
+
+
+        modalInstance.result.then(function (group) {
+            //$scope.groups.push(group)
+        }, function () {
+            // the modal was dismissed
+            InjectData();
+        });
     }
 
-    $http.get('http://localhost:50147/api/status').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.statuses = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
+    function InjectData() {
+        $http.get('http://localhost:50147/api/status').
+         success(function (data, status, headers, config) {
+             // this callback will be called asynchronously
+             // when the response is available
+             $scope.statuses = data;
+         }).
+         error(function (data, status, headers, config) {
+             // called asynchronously if an error occurs
+             // or server returns response with an error status.
+             console.log("failed");
+        });
+    }
+
+    InjectData();
+   
 });
 
 app.controller('workItemGroupController', function ($scope, $http, $modal) {

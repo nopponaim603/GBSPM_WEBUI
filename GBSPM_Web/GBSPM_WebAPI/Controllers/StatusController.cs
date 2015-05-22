@@ -39,23 +39,20 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/Status/5
-        public HttpResponseMessage PutStatus(int id, Status status)
+        public HttpResponseMessage PutStatus(StatusEntity status)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            if (id != status.StatusId)
+            if (status == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(status).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                dbContext.UpdateStatus(status);
             }
             catch (DbUpdateConcurrencyException ex)
             {

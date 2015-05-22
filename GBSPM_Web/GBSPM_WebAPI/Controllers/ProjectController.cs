@@ -38,27 +38,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/Project/5
-        public HttpResponseMessage PutProject(int id, Project project)
+        public HttpResponseMessage PutProject(ProjectEntity project)
         {
-            if (ModelState.IsValid && id == project.ProjectId)
+            if (!ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            else
+            if (project == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+            try
+            {
+                dbContext.UpdateProject(project);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // POST api/Project
