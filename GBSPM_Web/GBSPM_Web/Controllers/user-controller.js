@@ -2,6 +2,7 @@
     $scope.users;
     $scope.title = "Display User";
     $scope.subTitle = "All about user is here.";
+    $scope.positions;
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
@@ -13,6 +14,9 @@
                 },
                 comtrolName: function () {
                     return "EditUser";
+                },
+                additionalItems: function () {
+                    return $scope.positions;
                 }
             }
         });
@@ -39,6 +43,32 @@
               // or server returns response with an error status.
               console.log("failed");
           });
+
+        $http.get('http://localhost:50147/api/position').
+         success(function (data, status, headers, config) {
+             // this callback will be called asynchronously
+             // when the response is available
+             $scope.positions = data;
+         }).
+         error(function (data, status, headers, config) {
+             // called asynchronously if an error occurs
+             // or server returns response with an error status.
+             console.log("failed");
+         });
+    }
+
+    function GetAllPosition() {
+        $http.get('http://localhost:50147/api/position').
+         success(function (data, status, headers, config) {
+             // this callback will be called asynchronously
+             // when the response is available
+             $scope.positions = data;
+         }).
+         error(function (data, status, headers, config) {
+             // called asynchronously if an error occurs
+             // or server returns response with an error status.
+             console.log("failed");
+         });
     }
 
     InjectData();

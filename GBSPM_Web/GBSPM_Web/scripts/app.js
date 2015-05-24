@@ -186,12 +186,12 @@ app.controller('homeController', function ($scope, $http, $modal) {
     });
 });
 
-app.controller('modalController', function ($scope, $modalInstance, $http, item, comtrolName) {
+app.controller('modalController', function ($scope, $modalInstance, $http, item, comtrolName, additionalItems) {
     $scope.Title = comtrolName
     $scope.data = item;
     var _this = this;
     this.$modalInstance = $modalInstance;
-
+    InjectAdditionalDataForModal($scope, comtrolName, additionalItems);
 
     $scope.close = function () {
         _this.$modalInstance.dismiss("cancel");
@@ -202,7 +202,6 @@ app.controller('modalController', function ($scope, $modalInstance, $http, item,
     }
 
 });
-
 
 function OnSubmitHandler(comtrolName, data, $http, modal) {
     if (comtrolName == "EditUser") {
@@ -275,6 +274,61 @@ function OnSubmitHandler(comtrolName, data, $http, modal) {
             alert('failed');
         });
     }
+    else if (comtrolName == "EditWorkItemGroup") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/workitemgroup/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
+        });
+    }
+    else if (comtrolName == "EditWorkItemType") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/workitemtype/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
+        });
+    }
+    else if (comtrolName == "EditWorkItem") {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50147/api/workitem/',
+            data: data
+        })
+        .success(function (data) {
+            alert('success');
+            modal.dismiss("cancel");
+        })
+        .error(function (error, status) {
+            alert('failed');
+        });
+    }
+}
+
+function InjectAdditionalDataForModal($scope, controlName, additionalItems) {
+    if (controlName == "EditUser") {
+        $scope.positions = additionalItems;
+    }
+    else if (controlName == "EditWorkItem") {
+        $scope.users = additionalItems['user'];
+        $scope.statuses = additionalItems['status'];
+        $scope.projects = additionalItems['project'];
+        $scope.workitemgroups = additionalItems['workitemgroup'];
+        $scope.workitemtypes = additionalItems['workitemtype'];
+    }
 }
 
 app.controller('projectController', function ($scope, $http, $modal) {
@@ -292,6 +346,9 @@ app.controller('projectController', function ($scope, $http, $modal) {
                 },
                 comtrolName: function () {
                     return "EditProject";
+                },
+                additionalItems: function () {
+                    return null;
                 }
             }
         });
@@ -327,6 +384,13 @@ app.controller('workItemController', function ($scope, $http, $modal) {
     $scope.workitems;
     $scope.title = "Display Work Item";
     $scope.subTitle = "All about work items is here.";
+    $scope.workitemtypes;
+    $scope.users;
+    $scope.statuses;
+    $scope.projects;
+    $scope.workitemgroups;
+
+    var l_additionalItems = { user: null, status: null, project: null, workitemgroup : null, workitemtype : null };
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
@@ -338,22 +402,98 @@ app.controller('workItemController', function ($scope, $http, $modal) {
                 },
                 comtrolName: function () {
                     return "EditWorkItem";
+                },
+                additionalItems: function () {
+                    return l_additionalItems;
                 }
             }
         });
+
+        // Manage after close the modal popup.
+        modalInstance.result.then(function (group) {
+            //$scope.groups.push(group)
+        }, function () {
+            // the modal was dismissed
+            InjectData();
+        });
     }
 
-    $http.get('http://localhost:50147/api/workitem').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.workitems = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
+    function InjectData() {
+        $http.get('http://localhost:50147/api/workitem').
+         success(function (data, status, headers, config) {
+             // this callback will be called asynchronously
+             // when the response is available
+             $scope.workitems = data;
+         }).
+         error(function (data, status, headers, config) {
+             // called asynchronously if an error occurs
+             // or server returns response with an error status.
+             console.log("failed");
+         });
+
+        $http.get('http://localhost:50147/api/workitemtype').
+        success(function (data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            l_additionalItems['workitemtype'] = data;
+        }).
+        error(function (data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log("failed");
+        });
+
+        $http.get('http://localhost:50147/api/user').
+          success(function (data, status, headers, config) {
+              // this callback will be called asynchronously
+              // when the response is available
+              l_additionalItems['user'] = data;
+          }).
+          error(function (data, status, headers, config) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+              console.log("failed");
+          });
+
+        $http.get('http://localhost:50147/api/status').
+        success(function (data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            l_additionalItems['status'] = data;
+        }).
+        error(function (data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log("failed");
+        });
+
+        $http.get('http://localhost:50147/api/project').
+        success(function (data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            l_additionalItems['project'] = data;
+        }).
+        error(function (data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log("failed");
+        });
+
+        $http.get('http://localhost:50147/api/workitemgroup').
+       success(function (data, status, headers, config) {
+           // this callback will be called asynchronously
+           // when the response is available
+           l_additionalItems['workitemgroup'] = data;
+       }).
+       error(function (data, status, headers, config) {
+           // called asynchronously if an error occurs
+           // or server returns response with an error status.
+           console.log("failed");
+       });
+        
+    }
+   
+    InjectData();
 });
 
 app.controller('rightController', function ($scope, $http, $modal) {
@@ -371,6 +511,9 @@ app.controller('rightController', function ($scope, $http, $modal) {
                 },
                 comtrolName: function () {
                     return "EditRights";
+                },
+                additionalItems: function () {
+                    return null;
                 }
             }
         });
@@ -416,6 +559,9 @@ app.controller('statusController', function ($scope, $http, $modal) {
                 },
                 comtrolName: function () {
                     return "EditStatus";
+                },
+                additionalItems: function () {
+                    return null;
                 }
             }
         });
@@ -462,22 +608,37 @@ app.controller('workItemGroupController', function ($scope, $http, $modal) {
                 },
                 comtrolName: function () {
                     return "EditWorkItemGroup";
+                },
+                additionalItems: function () {
+                    return null;
                 }
             }
         });
+
+        modalInstance.result.then(function (group) {
+            //$scope.groups.push(group)
+        }, function () {
+            // the modal was dismissed
+            InjectData();
+        });
     }
 
-    $http.get('http://localhost:50147/api/workitemgroup').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.workitemgroups = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
+    function InjectData() {
+        $http.get('http://localhost:50147/api/workitemgroup').
+        success(function (data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            $scope.workitemgroups = data;
+        }).
+        error(function (data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log("failed");
+        });
+    }
+
+    InjectData();
+  
 });
 
 app.controller('workItemTypeController', function ($scope, $http, $modal) {
@@ -495,22 +656,37 @@ app.controller('workItemTypeController', function ($scope, $http, $modal) {
                 },
                 comtrolName: function () {
                     return "EditWorkItemType";
+                },
+                additionalItems: function () {
+                    return null;
                 }
             }
         });
+
+        modalInstance.result.then(function (group) {
+            //$scope.groups.push(group)
+        }, function () {
+            // the modal was dismissed
+            InjectData();
+        });
     }
 
-    $http.get('http://localhost:50147/api/workitemtype').
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.workitemtypes = data;
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("failed");
-  });
+    function InjectData() {
+        $http.get('http://localhost:50147/api/workitemtype').
+         success(function (data, status, headers, config) {
+             // this callback will be called asynchronously
+             // when the response is available
+             $scope.workitemtypes = data;
+         }).
+         error(function (data, status, headers, config) {
+             // called asynchronously if an error occurs
+             // or server returns response with an error status.
+             console.log("failed");
+         });
+    }
+   
+    InjectData();
+
 });
 
 app.controller('graphController', function ($scope, $http) {

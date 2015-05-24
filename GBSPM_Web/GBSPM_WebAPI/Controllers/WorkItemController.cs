@@ -39,27 +39,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/WorkItem/5
-        public HttpResponseMessage PutWorkItem(int id, WorkItem workitem)
+        public HttpResponseMessage PutWorkItem(WorkItemEntity workitem)
         {
-            if (ModelState.IsValid && id == workitem.WorkItemId)
+            if (!ModelState.IsValid)
             {
-                db.Entry(workitem).State = EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            else
+            if (workitem == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+            try
+            {
+                dbContext.UpdateWorkItem(workitem);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // POST api/WorkItem

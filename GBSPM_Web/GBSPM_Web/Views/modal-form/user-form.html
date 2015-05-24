@@ -8,9 +8,24 @@
         </h4>
     </div>
     <div class="modal-body">
-        <p>FirstName : <input type="text" ng-model="data.FirstName" class="form-control" /></p>
-        <p>LastName : <input type="text" ng-model="data.LastName" class="form-control"/></p>
-        <p>Email : <input type="text" ng-model="data.Email" class="form-control" /></p>
+        <p>
+            FirstName :
+            <input type="text" ng-model="data.FirstName" class="form-control" />
+        </p>
+        <p>
+            LastName :
+            <input type="text" ng-model="data.LastName" class="form-control" />
+        </p>
+        <p>
+            Email :
+            <input type="text" ng-model="data.Email" class="form-control" />
+        </p>
+        <p>
+            Position : 
+        </p>
+        <p>
+            <select ng-model="data.PositionId" ng-options="p.PositionId as p.Description for p in positions" ></select>
+        </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="close()">

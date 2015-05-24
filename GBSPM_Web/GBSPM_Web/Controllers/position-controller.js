@@ -13,6 +13,9 @@
                 },
                 comtrolName: function () {
                     return "EditPosition";
+                },
+                additionalItems: function () {
+                    return null;
                 }
             }
         });

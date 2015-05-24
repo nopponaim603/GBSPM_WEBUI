@@ -26,16 +26,18 @@
                                 <tr style="font-size: 18px">
                                     <th>FirstName</th>
                                     <th>LastName</th>
-                                    <th style="width: 40px">Email</th>
+                                    <th>Email</th>
+                                    <th>Position</th>
                                     <th></th>
                                 </tr>
                                 <tr ng-repeat="x in users | filter:test | orderBy:'UserId'">
-                                    <td style="width: 50%">{{ x.FirstName }}</td>
-                                    <td style="width: 25%">{{ x.LastName }}</td>
-                                    <td style="width: 25%">
-                                    {{ x.Email }}</tdstyle>
-                                        <td style="width: 20%">
-                                            <button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button></td>
+                                    <td style="width: 20%">{{ x.FirstName }}</td>
+                                    <td style="width: 20%">{{ x.LastName }}</td>
+                                    <td style="width: 20%">{{ x.Email }}</td>
+                                    <td style="width: 20%">{{ x.Position.Description }}</td>
+                                    <td style="width: 20%">
+                                        <button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button>
+                                    </td>
                                 </tr>
                             </table>
                             <div class="box-footer clearfix">

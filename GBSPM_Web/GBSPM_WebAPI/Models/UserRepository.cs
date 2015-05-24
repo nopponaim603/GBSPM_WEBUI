@@ -23,6 +23,8 @@ namespace GBSPM_WebAPI.Models
                 user.Password = item.Password;
                 user.PositionId = item.PositionId;
                 user.Email = item.Email;
+                user.Position = new PositionEntity() { Description = item.Position.Description, PositionId = item.PositionId };
+
                 foreach (var project in item.Projects)
                 {
                     user.Projects.Add(new ProjectEntity() { ProjectId = project.ProjectId, Description = project.Description });
@@ -45,7 +47,12 @@ namespace GBSPM_WebAPI.Models
                     UserName = user.UserName,
                     Password = user.Password,
                     PositionId = user.PositionId,
-                    Email = user.Email
+                    Email = user.Email,
+                    Position = new PositionEntity() 
+                    {
+                        Description = user.Position.Description,
+                        PositionId = user.PositionId                        
+                    }
                 };
             }
             return null;
@@ -73,6 +80,7 @@ namespace GBSPM_WebAPI.Models
                 userToUpdate.FirstName = user.FirstName;
                 userToUpdate.LastName = user.LastName;
                 userToUpdate.Email = user.Email;
+                userToUpdate.PositionId = user.PositionId;
                 dataContext.SaveChanges();
                 dataContext.Entry(userToUpdate).State = EntityState.Modified;
                 return true;

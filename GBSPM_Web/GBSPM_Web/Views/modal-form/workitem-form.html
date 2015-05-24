@@ -8,11 +8,50 @@
         </h4>
     </div>
     <div class="modal-body">
-        <p>Title <input type="text" ng-model="data.Title" class="form-control" /></p>
-        <p>Description <input type="text" ng-model="data.Description" class="form-control" /></p>
-        <p>Prioriry <input type="text" ng-model="data.Priority" class="form-control" /></p>
-        <p>Estimate Time <input type="text" ng-model="data.EstimateTime" class="form-control" /></p>
-        <p>Actual Time <input type="text" ng-model="data.ActualTime" class="form-control" /></p>
+        <p>
+            Work Item Type :
+        </p>
+        <p>
+            <select ng-model="data.WorkItemTypeId" ng-options="w.WorkItemTypeId as w.Description for w in workitemtypes"></select>
+        </p>
+        <p>
+            Title
+            <input type="text" ng-model="data.Title" class="form-control" />
+        </p>
+        <p>
+            Description
+            <input type="text" ng-model="data.Description" class="form-control" />
+        </p>
+        <p>
+            Prioriry
+            <input type="text" ng-model="data.Priority" class="form-control" />
+        </p>
+        <p>Assigned To :</p>
+        <p>
+            <select ng-model="data.AssignTo" ng-options="u.UserId as u.FirstName for u in users"></select>
+        </p>
+        <p>
+            Status :
+        </p>
+        <p>
+            <select ng-model="data.StatusId" ng-options="s.StatusId as s.Description for s in statuses"></select>
+        </p>
+        <p>
+            Work Item Group :
+        </p>
+        <p>
+            <select ng-model="data.WorkItemGroupId" ng-options="w.WorkItemGroupId as w.Description for w in workitemgroups"></select>
+        </p>
+
+        <p>
+            Estimate Time
+            <input type="text" ng-model="data.EstimateTime" class="form-control" />
+        </p>
+        <p>
+            Actual Time
+            <input type="text" ng-model="data.ActualTime" class="form-control" />
+        </p>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="close()">

@@ -33,6 +33,7 @@ namespace GBSPM_WebAPI.Models
                 WorkItemTypeEntity workItemType = new WorkItemTypeEntity();
                 workItemType.WorkItemTypeId = data.WorkItemTypeId;
                 workItemType.Description = data.Description;
+                return workItemType;
             }
             return null;
         }
@@ -49,6 +50,7 @@ namespace GBSPM_WebAPI.Models
             {
                 _workItemType.Description = workItemType.Description;
                 dataContext.Entry(_workItemType).State = EntityState.Modified;
+                dataContext.SaveChanges();
                 return true;
             }
             return false;

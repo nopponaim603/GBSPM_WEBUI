@@ -25,14 +25,22 @@
                             <table class="table table-bordered">
                                 <tr style="font-size: 18px">
                                     <th>Project</th>
+                                    <th>Group</th>
                                     <th>Title</th>
                                     <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
                                     <th></th>
                                 </tr>
                                 <tr ng-repeat="x in workitems | filter:test | orderBy:'WorkItemId'">
                                     <td style="width: 10%">{{ x.Project.Name }}</td>
+                                    <td style="width: 10%">{{ x.WorkItemGroup.Description }}</td>
                                     <td style="width: 10%">{{ x.Title }}</td>
-                                    <td style="width: 80%">{{ x.Description }}</td>
+                                    <td style="width: 20%">{{ x.Description }}</td>
+                                    <td style="width: 10%">{{ x.WorkItemType.Description }}</td>
+                                    <td style="width: 10%">{{ x.Status.Description }}</td>
+                                    <td style="width: 5%">{{ x.Priority }}</td>
                                     <td><button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button></td>
                                 </tr>
                             </table>

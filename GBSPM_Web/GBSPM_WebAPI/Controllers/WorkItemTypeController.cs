@@ -39,23 +39,20 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/WorkItemType/5
-        public HttpResponseMessage PutWorkItemType(int id, WorkItemType workitemtype)
+        public HttpResponseMessage PutWorkItemType(WorkItemTypeEntity workitemtype)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            if (id != workitemtype.WorkItemTypeId)
+            if (workitemtype == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(workitemtype).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                dbContext.UpdateWorkItemType(workitemtype);
             }
             catch (DbUpdateConcurrencyException ex)
             {
