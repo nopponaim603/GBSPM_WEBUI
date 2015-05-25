@@ -142,6 +142,7 @@
     <Compile Include="Models\DataModel\RightEntity.cs" />
     <Compile Include="Models\DataModel\StatusEntity.cs" />
     <Compile Include="Models\DataModel\UserEntity.cs" />
+    <Compile Include="Models\DataModel\UserEntity.extend.cs" />
     <Compile Include="Models\DataModel\WorkItemEntity.cs" />
     <Compile Include="Models\DataModel\WorkItemGroupEntity.cs" />
     <Compile Include="Models\DataModel\WorkItemTypeEntity.cs" />

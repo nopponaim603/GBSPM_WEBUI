@@ -642,6 +642,7 @@
     <Content Include="scripts\d3\d3.min.js" />
     <Content Include="scripts\graph.js" />
     <Content Include="scripts\scriptApp.js" />
+    <Content Include="scripts\GBSPMServices.js" />
     <Content Include="test.html" />
     <Content Include="Views\detail.html" />
     <Content Include="Views\displaygraph_sample.html" />

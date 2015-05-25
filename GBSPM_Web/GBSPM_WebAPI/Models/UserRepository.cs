@@ -58,16 +58,17 @@ namespace GBSPM_WebAPI.Models
             return null;
         }
 
-        public DataModel.UserEntity AddUser(DataModel.UserEntity user)
+        public UserEntity AddUser(DataModel.UserEntity user)
         {
-            var userToUpdate = dataContext.Users.FirstOrDefault(c => c.UserId == user.UserId);
-            if (userToUpdate != null)
-            {
-                userToUpdate.FirstName = user.FirstName;
-                userToUpdate.LastName = user.LastName;
-                userToUpdate.Email = user.Email;
-                dataContext.SaveChanges();
-            }
+            var userToUpdate = new User();
+            userToUpdate.FirstName = user.FirstName;
+            userToUpdate.LastName = user.LastName;
+            userToUpdate.Email = user.Email;
+            userToUpdate.PositionId = user.PositionId;
+            userToUpdate.UserName = user.UserName;
+            userToUpdate.Password = user.Password;
+            dataContext.Users.Add(userToUpdate);
+            dataContext.SaveChanges();        
 
             return user;
         }

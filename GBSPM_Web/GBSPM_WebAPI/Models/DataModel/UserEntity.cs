@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GBSPM_WebAPI.Models.DataModel
 {
-    public class UserEntity
+    public partial class UserEntity
     {
         public UserEntity()
         {

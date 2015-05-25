@@ -1,4 +1,4 @@
-﻿<form name="myForm">
+﻿<form name="myForm" ng-submit="submit()">
     <div class="modal-header">
         <button type="button" class="close" ng-click="close()"
             aria-hidden="true">
@@ -10,11 +10,20 @@
     <div class="modal-body">
         <p>
             FirstName :
-            <input type="text" ng-model="data.FirstName" class="form-control" />
+            <input type="text" ng-model="data.FirstName" class="form-control" ng-required="true" />
+            <p class="help-block" ng-if="myForm.data.FirstName.$error.required">The user's name is required</p>
         </p>
         <p>
             LastName :
-            <input type="text" ng-model="data.LastName" class="form-control" />
+            <input type="text" ng-model="data.LastName" class="form-control" ng-required="true" />
+        </p>
+        <p ng-if="data.IsAdmin">
+            User Name :
+            <input type="text" ng-model="data.UserName" class="form-control" />
+        </p>
+        <p ng-if="data.IsAdmin">
+            Password :
+            <input type="password" ng-model="data.Password" class="form-control" />
         </p>
         <p>
             Email :
@@ -24,14 +33,14 @@
             Position : 
         </p>
         <p>
-            <select ng-model="data.PositionId" ng-options="p.PositionId as p.Description for p in positions" ></select>
+            <select ng-model="data.PositionId" ng-options="p.PositionId as p.Description for p in positions" ng-required="true" ></select>
         </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="close()">
             Close
         </button>
-        <button type="button" class="btn btn-primary" ng-click="submit()">
+        <button type="submit" class="btn btn-primary">
             Submit changes
         </button>
     </div>

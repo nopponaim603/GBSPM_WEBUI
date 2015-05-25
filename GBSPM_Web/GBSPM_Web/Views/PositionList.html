@@ -18,8 +18,16 @@
                         <div class="box-body">
 
                             <div style="padding: 10px;">
-                                Search :
+                                <div style="float: left">
+                                    Search :
                                 <input type="text" ng-model="test">
+                                </div>
+                                <div style="float: right;">
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="OnAddNew()">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        <span>Add new</span>
+                                    </button>
+                                </div>
                             </div>
 
                             <table class="table table-bordered">
@@ -31,7 +39,8 @@
                                 <tr ng-repeat="x in positions | filter:test | orderBy:'Description'">
                                     <td style="width: 10%">{{ x.PositionId }}</td>
                                     <td style="width: 90%">{{ x.Description }}</td>
-                                    <td><button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button></td>
+                                    <td>
+                                        <button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button></td>
                                 </tr>
                             </table>
                             <div class="box-footer clearfix">

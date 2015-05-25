@@ -29,6 +29,28 @@
         });
     }
 
+    $scope.OnAddNew = function AddPosition() {
+        var position = { PositionId: null, Description: null };
+
+        var modalInstance = $modal.open({
+            templateUrl: '/Views/modal-form/position-form.html',
+            controller: 'modalController',
+            resolve: {
+                item: function () {
+                    return user;
+                },
+                comtrolName: function () {
+                    return "AddPosition";
+                },
+                additionalItems: function () {
+                    return null;
+                }
+            },
+            backdrop: 'static',
+            keyboard: false
+        });
+    }
+
     function InjectData() {
         $http.get('http://localhost:50147/api/position').
          success(function (data, status, headers, config) {

@@ -63,21 +63,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // POST api/User
-        public HttpResponseMessage PostUser(User user)
+        public HttpResponseMessage PostUser(UserEntity user)
         {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserId }));
-                return response;
-            }
-            else
+            if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            try
+            {
+                context.AddUser(user);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/User/5

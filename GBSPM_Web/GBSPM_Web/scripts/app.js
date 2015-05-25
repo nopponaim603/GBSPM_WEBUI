@@ -78,59 +78,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/home');
 
-
-    //$routeProvider
-
-    //    // route for the home page
-    //    .when('/', {
-    //        templateUrl: '/Views/home.html',
-    //        controller: 'homeController'
-    //    })
-
-    //.when('/displayGraph', {
-    //    templateUrl: '/Views/displaygraph_sample.html',
-    //    controller: 'graphController'
-    //})
-
-    //.when('/manageUser', {
-    //    templateUrl: '/Views/userlist.html',
-    //    controller: 'userController'
-    //})
-
-    //.when('/PositionList', {
-    //    templateUrl: '/Views/PositionList.html',
-    //    controller: 'positionController'
-    //})
-
-    //.when('/ProjectList', {
-    //    templateUrl: '/Views/ProjectList.html',
-    //    controller: 'projectController'
-    //})
-
-    //.when('/WorkItemList', {
-    //    templateUrl: '/Views/WorkItemList.html',
-    //    controller: 'workItemController'
-    //})
-
-    //.when('/RightList', {
-    //    templateUrl: '/Views/RightList.html',
-    //    controller: 'rightController'
-    //})
-
-    //.when('/StatusList', {
-    //    templateUrl: '/Views/StatusList.html',
-    //    controller: 'statusController'
-    //})
-
-    //.when('/WorkItemGroupList', {
-    //    templateUrl: '/Views/WorkItemGroupList.html',
-    //    controller: 'workItemGroupController'
-    //})
-
-    //.when('/WorkItemTypeList', {
-    //    templateUrl: '/Views/WorkItemTypeList.html',
-    //    controller: 'workItemTypeController'
-    //})
 });
 
 app.controller('homeController', function ($scope, $http, $modal) {
@@ -186,7 +133,7 @@ app.controller('homeController', function ($scope, $http, $modal) {
     });
 });
 
-app.controller('modalController', function ($scope, $modalInstance, $http, item, comtrolName, additionalItems) {
+app.controller('modalController', function ($scope, $modalInstance, $http, item, comtrolName, additionalItems, ServiceFactory) {
     $scope.Title = comtrolName
     $scope.data = item;
     var _this = this;
@@ -198,24 +145,19 @@ app.controller('modalController', function ($scope, $modalInstance, $http, item,
     };
 
     $scope.submit = function () {
-        OnSubmitHandler(comtrolName, $scope.data, $http, _this.$modalInstance);
+        OnSubmitHandler(comtrolName, $scope.data, $http, _this.$modalInstance, ServiceFactory);
     }
 
 });
 
-function OnSubmitHandler(comtrolName, data, $http, modal) {
+function OnSubmitHandler(comtrolName, data, $http, modal, ServiceFactory) {
     if (comtrolName == "EditUser") {
-        $http({
-            method: 'PUT',
-            url: 'http://localhost:50147/api/user/',
-            data: data
-        })
-        .success(function (data) {
-            alert('success');
+        ServiceFactory.UpdateUser(data).then(function (data) {
+            alert('Success!');
             modal.dismiss("cancel");
-        })
-        .error(function (error, status) {
-            alert('failed');
+        },
+        function (error) {
+            alert(error);
         });
     }
     else if (comtrolName == "EditPosition") {
@@ -316,13 +258,22 @@ function OnSubmitHandler(comtrolName, data, $http, modal) {
             alert('failed');
         });
     }
+    else if (comtrolName == "AddUser") {
+        ServiceFactory.AddUser(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
 }
 
 function InjectAdditionalDataForModal($scope, controlName, additionalItems) {
-    if (controlName == "EditUser") {
+    if (controlName == "EditUser" || controlName == "AddUser") {
         $scope.positions = additionalItems;
     }
-    else if (controlName == "EditWorkItem") {
+    else if (controlName == "EditWorkItem" || controlName == "AddWorkItem") {
         $scope.users = additionalItems['user'];
         $scope.statuses = additionalItems['status'];
         $scope.projects = additionalItems['project'];
