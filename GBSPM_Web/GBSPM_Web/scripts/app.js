@@ -267,6 +267,15 @@ function OnSubmitHandler(comtrolName, data, $http, modal, ServiceFactory) {
              alert(error);
          });
     }
+    else if (comtrolName == "AddPosition") {
+        ServiceFactory.AddPosition(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
 }
 
 function InjectAdditionalDataForModal($scope, controlName, additionalItems) {

@@ -43,7 +43,12 @@ namespace GBSPM_WebAPI.Models
 
         public DataModel.RightEntity AddRight(DataModel.RightEntity right)
         {
-            throw new NotImplementedException();
+            Right newRight = new Right();
+            newRight.Description = right.Description;
+            db.Rights.Add(newRight);
+            db.SaveChanges();
+
+            return right;
         }
 
         public bool UpdateRight(DataModel.RightEntity right)

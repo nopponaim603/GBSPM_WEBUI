@@ -70,7 +70,21 @@ namespace GBSPM_WebAPI.Models
 
         public WorkItemEntity AddWorkItem(WorkItemEntity workItem)
         {
-            throw new NotImplementedException();
+            WorkItem l_workItem = new WorkItem();
+            l_workItem.Title = workItem.Title;
+            l_workItem.StatusId = workItem.StatusId;
+            l_workItem.ProjectId = workItem.ProjectId;
+            l_workItem.WorkItemTypeId = workItem.WorkItemTypeId;
+            l_workItem.AssignTo = workItem.AssignTo;
+            l_workItem.Description = workItem.Description;
+            l_workItem.EstimateTime = workItem.EstimateTime;
+            l_workItem.ActualTime = workItem.ActualTime;
+            l_workItem.Priority = workItem.Priority;
+            l_workItem.WorkItemGroupId = workItem.WorkItemGroupId;
+            dataContext.WorkItems.Add(l_workItem);
+            dataContext.SaveChanges();
+
+            return workItem;
         }
 
         public bool UpdateWorkItem(WorkItemEntity workItem)

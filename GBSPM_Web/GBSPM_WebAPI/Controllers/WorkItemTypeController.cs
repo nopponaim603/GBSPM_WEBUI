@@ -63,21 +63,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // POST api/WorkItemType
-        public HttpResponseMessage PostWorkItemType(WorkItemType workitemtype)
+        public HttpResponseMessage PostWorkItemType(WorkItemTypeEntity workitemtype)
         {
-            if (ModelState.IsValid)
-            {
-                db.WorkItemTypes.Add(workitemtype);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, workitemtype);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = workitemtype.WorkItemTypeId }));
-                return response;
-            }
-            else
+            if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
+            if (workitemtype == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            try
+            {
+                dbContext.AddWorkItemType(workitemtype);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/WorkItemType/5

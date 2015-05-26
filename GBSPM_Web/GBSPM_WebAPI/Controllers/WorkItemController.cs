@@ -63,21 +63,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // POST api/WorkItem
-        public HttpResponseMessage PostWorkItem(WorkItem workitem)
+        public HttpResponseMessage PostWorkItem(WorkItemEntity workitem)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.WorkItems.Add(workitem);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, workitem);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = workitem.WorkItemId }));
-                return response;
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            else
+            if (workitem == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+            try
+            {
+                dbContext.AddWorkItem(workitem);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/WorkItem/5

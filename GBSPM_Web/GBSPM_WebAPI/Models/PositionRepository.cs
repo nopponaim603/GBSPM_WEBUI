@@ -39,7 +39,12 @@ namespace GBSPM_WebAPI.Models
 
         public DataModel.PositionEntity SavePosition(DataModel.PositionEntity position)
         {
-            throw new NotImplementedException();
+            Position newPosition = new Position();
+            newPosition.Description = position.Description;
+            dataContext.Positions.Add(newPosition);
+            dataContext.SaveChanges();
+
+            return position;
         }
 
         public bool UpdatePosition(DataModel.PositionEntity position)

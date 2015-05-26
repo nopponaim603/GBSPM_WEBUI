@@ -43,7 +43,12 @@ namespace GBSPM_WebAPI.Models
 
         public DataModel.StatusEntity AddStatus(DataModel.StatusEntity status)
         {
-            throw new NotImplementedException();
+            Status newStat = new Status();
+            newStat.Description = status.Description;
+            db.Status.Add(newStat);
+            db.SaveChanges();
+
+            return status;
         }
 
         public bool UpdateStatus(DataModel.StatusEntity status)

@@ -64,21 +64,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // POST api/Position
-        public HttpResponseMessage PostPosition(Position position)
+        public HttpResponseMessage PostPosition(PositionEntity position)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Positions.Add(position);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, position);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = position.PositionId }));
-                return response;
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            else
+            if (position == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+            try
+            {
+                dbContext.SavePosition(position);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/Position/5

@@ -1,6 +1,7 @@
 ﻿using GBSPM_WebAPI.Models.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -40,12 +41,23 @@ namespace GBSPM_WebAPI.Models
 
         public DataModel.WorkItemGroupEntity AddWorkItemGroup(DataModel.WorkItemGroupEntity workItemGroup)
         {
-            throw new NotImplementedException();
+            WorkItemGroup l_group = new WorkItemGroup();
+            l_group.Description = workItemGroup.Description;
+            db.WorkItemGroups.Add(l_group);
+            db.SaveChanges();
+            return workItemGroup;
         }
 
         public bool UpdateWorkItemGroup(DataModel.WorkItemGroupEntity workItemGroup)
         {
-            throw new NotImplementedException();
+            var l_group = db.WorkItemGroups.FirstOrDefault(c => c.WorkItemGroupId == workItemGroup.WorkItemGroupId);
+            if (l_group != null)
+            {
+                l_group.Description = workItemGroup.Description;
+                db.Entry(l_group).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return false;
         }
 
         public bool DeleteWorkItemGroup(int id)

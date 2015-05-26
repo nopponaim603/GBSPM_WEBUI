@@ -62,21 +62,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // POST api/Project
-        public HttpResponseMessage PostProject(Project project)
+        public HttpResponseMessage PostProject(ProjectEntity project)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Projects.Add(project);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, project);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = project.ProjectId }));
-                return response;
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            else
+            if (project == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+            try
+            {
+                dbContext.AddProject(project);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/Project/5

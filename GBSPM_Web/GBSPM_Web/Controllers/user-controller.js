@@ -1,4 +1,4 @@
-﻿app.controller('userController', function ($scope, $http, $modal, ServiceFactory, $q) {
+﻿app.controller('userController', function ($scope, $http, $modal, ServiceFactory) {
     $scope.users;
     $scope.title = "Display User";
     $scope.subTitle = "All about user is here.";
@@ -65,36 +65,19 @@
     function InjectData() {
         ServiceFactory.GetAllUsers().then(function (data) {
             $scope.users = data;
+
+           
         },
         function (error) {
             //alert(error);
         });
+        
 
-        $http.get('http://localhost:50147/api/position').
-         success(function (data, status, headers, config) {
-             // this callback will be called asynchronously
-             // when the response is available
-             $scope.positions = data;
-         }).
-         error(function (data, status, headers, config) {
-             // called asynchronously if an error occurs
-             // or server returns response with an error status.
-             console.log("failed");
-         });
-    }
-
-    function GetAllPosition() {
-        $http.get('http://localhost:50147/api/position').
-         success(function (data, status, headers, config) {
-             // this callback will be called asynchronously
-             // when the response is available
-             $scope.positions = data;
-         }).
-         error(function (data, status, headers, config) {
-             // called asynchronously if an error occurs
-             // or server returns response with an error status.
-             console.log("failed");
-         });
+        ServiceFactory.GetAllPositions().then(function (data) {
+            $scope.positions = data;
+        },
+           function (error) {
+        });
     }
 
     InjectData();

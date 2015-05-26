@@ -38,23 +38,20 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // PUT api/WorkItemGroup/5
-        public HttpResponseMessage PutWorkItemGroup(int id, WorkItemGroup workitemgroup)
+        public HttpResponseMessage PutWorkItemGroup(WorkItemGroupEntity workitemgroup)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            if (id != workitemgroup.WorkItemGroupId)
+            if (workitemgroup == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(workitemgroup).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                dbContext.UpdateWorkItemGroup(workitemgroup);
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -65,21 +62,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // POST api/WorkItemGroup
-        public HttpResponseMessage PostWorkItemGroup(WorkItemGroup workitemgroup)
+        public HttpResponseMessage PostWorkItemGroup(WorkItemGroupEntity workitemgroup)
         {
-            if (ModelState.IsValid)
-            {
-                db.WorkItemGroups.Add(workitemgroup);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, workitemgroup);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = workitemgroup.WorkItemGroupId }));
-                return response;
-            }
-            else
+            if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
+            if (workitemgroup == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            try
+            {
+                dbContext.AddWorkItemGroup(workitemgroup);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/WorkItemGroup/5

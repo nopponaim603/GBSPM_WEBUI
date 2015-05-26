@@ -40,7 +40,12 @@ namespace GBSPM_WebAPI.Models
 
         public DataModel.WorkItemTypeEntity AddWorkItemType(DataModel.WorkItemTypeEntity workItemType)
         {
-            throw new NotImplementedException();
+            WorkItemType _workItemType = new WorkItemType();
+            _workItemType.Description = workItemType.Description;
+            dataContext.WorkItemTypes.Add(_workItemType);
+            dataContext.SaveChanges();
+
+            return workItemType;
         }
 
         public bool UpdateWorkItemType(DataModel.WorkItemTypeEntity workItemType)

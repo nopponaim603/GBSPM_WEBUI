@@ -63,21 +63,27 @@ namespace GBSPM_WebAPI.Controllers
         }
 
         // POST api/Status
-        public HttpResponseMessage PostStatus(Status status)
+        public HttpResponseMessage PostStatus(StatusEntity status)
         {
-            if (ModelState.IsValid)
-            {
-                db.Status.Add(status);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, status);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = status.StatusId }));
-                return response;
-            }
-            else
+            if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
+            if (status == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            try
+            {
+                dbContext.AddStatus(status);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/Status/5

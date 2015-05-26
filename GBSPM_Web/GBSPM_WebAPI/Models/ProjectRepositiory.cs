@@ -42,7 +42,13 @@ namespace GBSPM_WebAPI.Models
 
         public DataModel.ProjectEntity AddProject(DataModel.ProjectEntity project)
         {
-            throw new NotImplementedException();
+            Project newProject = new Project();
+            newProject.Description = project.Description;
+            newProject.Name = project.Name;
+            dataContext.Projects.Add(newProject);
+            dataContext.SaveChanges();
+
+            return project;
         }
 
         public bool UpdateProject(DataModel.ProjectEntity project)
