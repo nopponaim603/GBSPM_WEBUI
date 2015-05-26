@@ -291,7 +291,7 @@ function InjectAdditionalDataForModal($scope, controlName, additionalItems) {
     }
 }
 
-app.controller('projectController', function ($scope, $http, $modal) {
+app.controller('projectController', function ($scope, $http, $modal, ServiceFactory) {
     $scope.projects;
     $scope.title = "Display Project";
     $scope.subTitle = "All about project is here.";
@@ -310,7 +310,9 @@ app.controller('projectController', function ($scope, $http, $modal) {
                 additionalItems: function () {
                     return null;
                 }
-            }
+            },
+            backdrop: 'static',
+            keyboard: false
         });
 
         // Manage after close the modal popup.
@@ -323,16 +325,11 @@ app.controller('projectController', function ($scope, $http, $modal) {
     }
 
     function InjectData() {
-        $http.get('http://localhost:50147/api/project').
-        success(function (data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
+        ServiceFactory.GetAllProjects().then(function (data) {
             $scope.projects = data;
-        }).
-        error(function (data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log("failed");
+        }, 
+        function (error) {
+
         });
     }
 
@@ -340,15 +337,11 @@ app.controller('projectController', function ($scope, $http, $modal) {
   
 });
 
-app.controller('workItemController', function ($scope, $http, $modal) {
+app.controller('workItemController', function ($scope, $http, $modal, ServiceFactory) {
     $scope.workitems;
     $scope.title = "Display Work Item";
     $scope.subTitle = "All about work items is here.";
-    $scope.workitemtypes;
-    $scope.users;
-    $scope.statuses;
-    $scope.projects;
-    $scope.workitemgroups;
+
 
     var l_additionalItems = { user: null, status: null, project: null, workitemgroup : null, workitemtype : null };
 
@@ -366,7 +359,9 @@ app.controller('workItemController', function ($scope, $http, $modal) {
                 additionalItems: function () {
                     return l_additionalItems;
                 }
-            }
+            },
+            backdrop: 'static',
+            keyboard: false
         });
 
         // Manage after close the modal popup.
@@ -379,84 +374,54 @@ app.controller('workItemController', function ($scope, $http, $modal) {
     }
 
     function InjectData() {
-        $http.get('http://localhost:50147/api/workitem').
-         success(function (data, status, headers, config) {
-             // this callback will be called asynchronously
-             // when the response is available
-             $scope.workitems = data;
-         }).
-         error(function (data, status, headers, config) {
-             // called asynchronously if an error occurs
-             // or server returns response with an error status.
-             console.log("failed");
+        ServiceFactory.GetAllWorkItems().then(function (data) {
+            $scope.workitems = data;
+        }, 
+        function (error) {
+
+        });
+
+        ServiceFactory.GetAllWorkItemTypes().then(function (data) {
+            l_additionalItems['workitemtype'] = data;
+        },
+         function (error) {
+
          });
 
-        $http.get('http://localhost:50147/api/workitemtype').
-        success(function (data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
-            l_additionalItems['workitemtype'] = data;
-        }).
-        error(function (data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log("failed");
-        });
+        ServiceFactory.GetAllUsers().then(function (data) {
+            l_additionalItems['user'] = data;
+        },
+         function (error) {
 
-        $http.get('http://localhost:50147/api/user').
-          success(function (data, status, headers, config) {
-              // this callback will be called asynchronously
-              // when the response is available
-              l_additionalItems['user'] = data;
-          }).
-          error(function (data, status, headers, config) {
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
-              console.log("failed");
-          });
+         });
 
-        $http.get('http://localhost:50147/api/status').
-        success(function (data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
+        ServiceFactory.GetAllStatuses().then(function (data) {
             l_additionalItems['status'] = data;
-        }).
-        error(function (data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log("failed");
+        },
+        function (error) {
+
         });
 
-        $http.get('http://localhost:50147/api/project').
-        success(function (data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
+        ServiceFactory.GetAllProjects().then(function (data) {
             l_additionalItems['project'] = data;
-        }).
-        error(function (data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log("failed");
-        });
+        },
+         function (error) {
 
-        $http.get('http://localhost:50147/api/workitemgroup').
-       success(function (data, status, headers, config) {
-           // this callback will be called asynchronously
-           // when the response is available
-           l_additionalItems['workitemgroup'] = data;
-       }).
-       error(function (data, status, headers, config) {
-           // called asynchronously if an error occurs
-           // or server returns response with an error status.
-           console.log("failed");
-       });
+         });
+
+        ServiceFactory.GetAllWorkItemGroups().then(function (data) {
+            l_additionalItems['workitemgroup'] = data;
+        },
+         function (error) {
+
+         });
         
     }
    
     InjectData();
 });
 
-app.controller('rightController', function ($scope, $http, $modal) {
+app.controller('rightController', function ($scope, $http, $modal, ServiceFactory) {
     $scope.rights;
     $scope.title = "Display All Right";
     $scope.subTitle = "All about rights is here.";
@@ -475,7 +440,9 @@ app.controller('rightController', function ($scope, $http, $modal) {
                 additionalItems: function () {
                     return null;
                 }
-            }
+            },
+            backdrop: 'static',
+            keyboard: false
         });
 
         modalInstance.result.then(function (group) {
@@ -488,23 +455,18 @@ app.controller('rightController', function ($scope, $http, $modal) {
 
     function InjectData() {
 
-        $http.get('http://localhost:50147/api/right').
-      success(function (data, status, headers, config) {
-          // this callback will be called asynchronously
-          // when the response is available
-          $scope.rights = data;
-      }).
-      error(function (data, status, headers, config) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-          console.log("failed");
-      });
+        ServiceFactory.GetAllRights().then(function (data) {
+            $scope.rights = data;
+        }, 
+        function (error) {
+
+        });
     }
 
     InjectData();
 });
 
-app.controller('statusController', function ($scope, $http, $modal) {
+app.controller('statusController', function ($scope, $http, $modal, ServiceFactory) {
     $scope.statuses;
     $scope.title = "Display All Staus";
     $scope.subTitle = "All about status is here.";
@@ -523,7 +485,9 @@ app.controller('statusController', function ($scope, $http, $modal) {
                 additionalItems: function () {
                     return null;
                 }
-            }
+            },
+            backdrop: 'static',
+            keyboard: false
         });
 
 
@@ -536,16 +500,11 @@ app.controller('statusController', function ($scope, $http, $modal) {
     }
 
     function InjectData() {
-        $http.get('http://localhost:50147/api/status').
-         success(function (data, status, headers, config) {
-             // this callback will be called asynchronously
-             // when the response is available
-             $scope.statuses = data;
-         }).
-         error(function (data, status, headers, config) {
-             // called asynchronously if an error occurs
-             // or server returns response with an error status.
-             console.log("failed");
+        ServiceFactory.GetAllStatuses().then(function (data) {
+            $scope.statuses = data;
+        },
+        function (error) {
+
         });
     }
 
@@ -553,7 +512,7 @@ app.controller('statusController', function ($scope, $http, $modal) {
    
 });
 
-app.controller('workItemGroupController', function ($scope, $http, $modal) {
+app.controller('workItemGroupController', function ($scope, $http, $modal, ServiceFactory) {
     $scope.workitemgroups;
     $scope.title = "Display All Work Item Group";
     $scope.subTitle = "All about work item group is here.";
@@ -572,7 +531,9 @@ app.controller('workItemGroupController', function ($scope, $http, $modal) {
                 additionalItems: function () {
                     return null;
                 }
-            }
+            },
+            backdrop: 'static',
+            keyboard: false
         });
 
         modalInstance.result.then(function (group) {
@@ -584,16 +545,11 @@ app.controller('workItemGroupController', function ($scope, $http, $modal) {
     }
 
     function InjectData() {
-        $http.get('http://localhost:50147/api/workitemgroup').
-        success(function (data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
+        ServiceFactory.GetAllWorkItemGroups().then(function (data) {
             $scope.workitemgroups = data;
-        }).
-        error(function (data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log("failed");
+        },
+        function (error) {
+
         });
     }
 
@@ -601,7 +557,7 @@ app.controller('workItemGroupController', function ($scope, $http, $modal) {
   
 });
 
-app.controller('workItemTypeController', function ($scope, $http, $modal) {
+app.controller('workItemTypeController', function ($scope, $http, $modal, ServiceFactory) {
     $scope.workitemtypes;
     $scope.title = "Display All Work Item Type";
     $scope.subTitle = "All about work item type is here.";
@@ -620,7 +576,9 @@ app.controller('workItemTypeController', function ($scope, $http, $modal) {
                 additionalItems: function () {
                     return null;
                 }
-            }
+            },
+            backdrop: 'static',
+            keyboard: false
         });
 
         modalInstance.result.then(function (group) {
@@ -632,17 +590,12 @@ app.controller('workItemTypeController', function ($scope, $http, $modal) {
     }
 
     function InjectData() {
-        $http.get('http://localhost:50147/api/workitemtype').
-         success(function (data, status, headers, config) {
-             // this callback will be called asynchronously
-             // when the response is available
-             $scope.workitemtypes = data;
-         }).
-         error(function (data, status, headers, config) {
-             // called asynchronously if an error occurs
-             // or server returns response with an error status.
-             console.log("failed");
-         });
+        ServiceFactory.GetAllWorkItemTypes().then(function (data) {
+            $scope.workitemtypes = data;
+        },
+        function (error) {
+
+        });
     }
    
     InjectData();
