@@ -15,6 +15,12 @@
             <select ng-model="data.WorkItemTypeId" ng-options="w.WorkItemTypeId as w.Description for w in workitemtypes"></select>
         </p>
         <p>
+            Project :
+        </p>
+        <p>
+            <select ng-model="data.ProjectId" ng-options="p.ProjectId as p.Name for p in projects"></select>
+        </p>
+        <p>
             Title
             <input type="text" ng-model="data.Title" class="form-control" />
         </p>

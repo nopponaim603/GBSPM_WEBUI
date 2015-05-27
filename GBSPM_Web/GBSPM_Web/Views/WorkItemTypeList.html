@@ -17,9 +17,17 @@
 
                         <div class="box-body">
 
-                            <div style="padding: 10px;">
-                                Search :
+                           <div style="height: 40px;">
+                                <div style="float:left">
+                                    Search :
                                 <input type="text" ng-model="test">
+                                </div>
+                                <div style="float: right;">
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="OnAddNew()">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        <span>Add new</span>
+                                    </button>
+                                </div>
                             </div>
 
                             <table class="table table-bordered">
