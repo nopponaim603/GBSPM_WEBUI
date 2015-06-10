@@ -2,6 +2,7 @@
     $scope.projects;
     $scope.title = "Display Project";
     $scope.subTitle = "All about project is here.";
+    $scope.display = false;
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
@@ -63,6 +64,7 @@
     function InjectData() {
         ServiceFactory.GetAllProjects().then(function (data) {
             $scope.projects = data;
+            $scope.display = true;
         },
         function (error) {
 
@@ -70,5 +72,11 @@
     }
 
     InjectData();
+
+    //setTimeout(function () {
+    //    $scope.$apply(function () {
+    //        $scope.display = true;
+    //    });
+    //}, 5000);
 
 });

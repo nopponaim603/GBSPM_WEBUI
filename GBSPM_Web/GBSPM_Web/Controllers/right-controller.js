@@ -2,6 +2,7 @@
     $scope.rights;
     $scope.title = "Display All Right";
     $scope.subTitle = "All about rights is here.";
+    $scope.display = false;
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
@@ -62,6 +63,7 @@
 
         ServiceFactory.GetAllRights().then(function (data) {
             $scope.rights = data;
+            $scope.display = true;
         },
         function (error) {
 
@@ -69,4 +71,10 @@
     }
 
     InjectData();
+
+    //setTimeout(function () {
+    //    $scope.$apply(function () {
+    //        $scope.display = true;
+    //    });
+    //}, 5000);
 });

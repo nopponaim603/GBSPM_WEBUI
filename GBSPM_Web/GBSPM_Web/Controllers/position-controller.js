@@ -2,6 +2,7 @@
     $scope.positions;
     $scope.title = "Display Position";
     $scope.subTitle = "All about position is here.";
+    $scope.display = false;
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
@@ -62,6 +63,7 @@
     function InjectData() {
         ServiceFactory.GetAllPositions().then(function (data) {
             $scope.positions = data;
+            $scope.display = true;
         }, 
         function (error) {
 

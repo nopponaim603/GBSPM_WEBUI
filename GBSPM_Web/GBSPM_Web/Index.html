@@ -29,7 +29,8 @@
     <script src="scripts/d3/d3.min.js"></script>
     <script src="scripts/angular-ui-router.js"></script>
     <script src="scripts/angular-ui/ui-bootstrap.js">
-    </script><script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    </script>
+    <script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
     <script src="Controllers/position-controller.js"></script>
     <script src="Controllers/project-controller.js"></script>
     <script src="Controllers/right-controller.js"></script>
@@ -65,6 +66,20 @@
             {
                 fill: blue;
             }
+
+        .loading
+        {
+            position: absolute;
+            padding: 2px;
+            opacity: 0.50;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            width: 800px;
+            height: 600px;
+            text-align: center;
+            z-index: 100000;
+            margin-left:400px;
+        }
     </style>
 </head>
 <body class="skin-blue">

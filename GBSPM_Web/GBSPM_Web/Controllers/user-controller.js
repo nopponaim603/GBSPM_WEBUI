@@ -3,6 +3,7 @@
     $scope.title = "Display User";
     $scope.subTitle = "All about user is here.";
     $scope.positions;
+    $scope.display = false;
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
@@ -65,8 +66,7 @@
     function InjectData() {
         ServiceFactory.GetAllUsers().then(function (data) {
             $scope.users = data;
-
-           
+            $scope.display = true;           
         },
         function (error) {
             //alert(error);
@@ -81,5 +81,5 @@
     }
 
     InjectData();
-
+ 
 });

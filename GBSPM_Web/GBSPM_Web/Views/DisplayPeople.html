@@ -16,11 +16,16 @@
 
 
                         <div class="box-body">
-
-
                             {{num}}
                             <div id="cy"></div>
+                            <ul>
+                                <li ng-repeat="item in items">
+                                    <p>Always present: {{item.name}}</p>
+                                    <p>Loads later: {{item.lateLoader}} <i ng-hide="item.lateLoader" class="icon icon-refresh icon-spin">loading image i don't have</i></p>
 
+                                </li>
+                            </ul>
+                            <div ng-hide="display" class="loading"><img src="../Images/loading.gif" /></div>
                         </div>
                         <!-- /.box-body -->
 

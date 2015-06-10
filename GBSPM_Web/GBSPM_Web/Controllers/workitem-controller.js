@@ -2,6 +2,7 @@
     $scope.workitems;
     $scope.title = "Display Work Item";
     $scope.subTitle = "All about work items is here.";
+    $scope.display = false;
 
 
     var l_additionalItems = { user: null, status: null, project: null, workitemgroup: null, workitemtype: null };
@@ -66,6 +67,7 @@
     function InjectData() {
         ServiceFactory.GetAllWorkItems().then(function (data) {
             $scope.workitems = data;
+            $scope.display = true;
         },
         function (error) {
 
@@ -109,4 +111,10 @@
     }
 
     InjectData();
+
+    //setTimeout(function () {
+    //    $scope.$apply(function () {
+    //        $scope.display = true;
+    //    });
+    //}, 5000);
 });

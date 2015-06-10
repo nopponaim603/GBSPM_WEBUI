@@ -136,6 +136,7 @@
     <Content Include="dist\js\demo.js" />
     <Content Include="dist\js\pages\dashboard.js" />
     <Content Include="dist\js\pages\dashboard2.js" />
+    <Content Include="Images\loading.gif" />
     <Content Include="Index.html" />
     <Content Include="login.html" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
