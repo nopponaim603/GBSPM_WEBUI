@@ -76,6 +76,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         })
 
+        .state('DisplayPeople', {
+            url: '/DisplayPeople',
+            templateUrl: '/Views/DisplayPeople.html',
+            controller: 'PeopleCtrl'
+
+        })
+
     $urlRouterProvider.otherwise('/home');
 
 });
@@ -276,6 +283,60 @@ function OnSubmitHandler(comtrolName, data, $http, modal, ServiceFactory) {
              alert(error);
          });
     }
+    else if (comtrolName == "AddProject") {
+        ServiceFactory.AddProject(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
+    else if (comtrolName == "AddWorkItem") {
+        ServiceFactory.AddWorkItem(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
+    else if (comtrolName == "AddRight") {
+        ServiceFactory.AddRight(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
+    else if (comtrolName == "AddStatus") {
+        ServiceFactory.AddStatus(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
+    else if (comtrolName == "AddWorkItemGroup") {
+        ServiceFactory.AddWorkItemGroup(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
+    else if (comtrolName == "AddWorkItemType") {
+        ServiceFactory.AddWorkItemType(data).then(function (data) {
+            alert('Success!');
+            modal.dismiss("cancel");
+        },
+         function (error) {
+             alert(error);
+         });
+    }
 }
 
 function InjectAdditionalDataForModal($scope, controlName, additionalItems) {
@@ -417,4 +478,76 @@ app.controller('graphController', function ($scope, $http) {
             }
         }
     };
+});
+
+app.controller('PeopleCtrl', function ($scope, $http, $modal, ServiceFactory) {
+    var myCy = document.getElementById('cy');
+    ServiceFactory.GetGraphDataByProject().then(function (peopleGraph) {
+        
+        $scope.num = peopleGraph;
+
+    },
+    function (error) {
+
+    });
+
+    $(function () { // on dom ready
+
+        var cy = cytoscape({
+            container: myCy,
+
+            style: cytoscape.stylesheet()
+              .selector('node')
+                .css({
+                    'content': 'data(id)'
+                })
+              .selector('edge')
+                .css({
+                    'target-arrow-shape': 'triangle',
+                    'width': 4,
+                    'line-color': '#ddd',
+                    'target-arrow-color': '#ddd'
+                })
+              .selector('.highlighted')
+                .css({
+                    'background-color': '#61bffc',
+                    'line-color': '#61bffc',
+                    'target-arrow-color': '#61bffc',
+                    'transition-property': 'background-color, line-color, target-arrow-color',
+                    'transition-duration': '0.5s'
+                }),
+
+            elements: {
+                nodes: [
+                  { data: { id: 'a' } },
+                  { data: { id: 'b' } },
+                  { data: { id: 'c' } },
+                  { data: { id: 'd' } },
+                  { data: { id: 'e' } }
+                ],
+
+                edges: [
+                  { data: { id: 'a"e', weight: 1, source: 'a', target: 'e' } },
+                  { data: { id: 'ab', weight: 3, source: 'a', target: 'b' } },
+                  { data: { id: 'be', weight: 4, source: 'b', target: 'e' } },
+                  { data: { id: 'bc', weight: 5, source: 'b', target: 'c' } },
+                  { data: { id: 'ce', weight: 6, source: 'c', target: 'e' } },
+                  { data: { id: 'cd', weight: 2, source: 'c', target: 'd' } },
+                  { data: { id: 'de', weight: 7, source: 'd', target: 'e' } }
+                ]
+            },
+
+            layout: {
+                name: 'breadthfirst',
+                directed: true,
+                roots: '#a',
+                padding: 10
+            }
+        });
+
+        var bfs = cy.elements().bfs('#a', function () { }, true);
+
+        
+
+    });
 });

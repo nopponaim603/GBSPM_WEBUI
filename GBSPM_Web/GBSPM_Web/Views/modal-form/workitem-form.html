@@ -1,4 +1,4 @@
-﻿<form name="myForm">
+﻿<form name="myForm" ng-submit="submit()">
     <div class="modal-header">
         <button type="button" class="close" ng-click="close()"
             aria-hidden="true">
@@ -12,25 +12,25 @@
             Work Item Type :
         </p>
         <p>
-            <select ng-model="data.WorkItemTypeId" ng-options="w.WorkItemTypeId as w.Description for w in workitemtypes"></select>
+            <select ng-model="data.WorkItemTypeId" ng-options="w.WorkItemTypeId as w.Description for w in workitemtypes" ng-required="true"></select>
         </p>
         <p>
             Project :
         </p>
         <p>
-            <select ng-model="data.ProjectId" ng-options="p.ProjectId as p.Name for p in projects"></select>
+            <select ng-model="data.ProjectId" ng-options="p.ProjectId as p.Name for p in projects" ng-required="true"></select>
         </p>
         <p>
             Title
-            <input type="text" ng-model="data.Title" class="form-control" />
+            <input type="text" ng-model="data.Title" class="form-control" ng-required="true" />
         </p>
         <p>
             Description
-            <input type="text" ng-model="data.Description" class="form-control" />
+            <input type="text" ng-model="data.Description" class="form-control" ng-required="true" />
         </p>
         <p>
             Prioriry
-            <input type="text" ng-model="data.Priority" class="form-control" />
+            <input type="text" ng-model="data.Priority" class="form-control" ng-required="true" />
         </p>
         <p>Assigned To :</p>
         <p>
@@ -40,13 +40,13 @@
             Status :
         </p>
         <p>
-            <select ng-model="data.StatusId" ng-options="s.StatusId as s.Description for s in statuses"></select>
+            <select ng-model="data.StatusId" ng-options="s.StatusId as s.Description for s in statuses" ng-required="true"></select>
         </p>
         <p>
             Work Item Group :
         </p>
         <p>
-            <select ng-model="data.WorkItemGroupId" ng-options="w.WorkItemGroupId as w.Description for w in workitemgroups"></select>
+            <select ng-model="data.WorkItemGroupId" ng-options="w.WorkItemGroupId as w.Description for w in workitemgroups" ng-required="true"></select>
         </p>
 
         <p>
@@ -63,7 +63,7 @@
         <button type="button" class="btn btn-default" ng-click="close()">
             Close
         </button>
-        <button type="button" class="btn btn-primary" ng-click="submit()">
+        <button type="submit" class="btn btn-primary">
             Submit changes
         </button>
     </div>

@@ -19,11 +19,11 @@
         </p>
         <p ng-if="data.IsAdmin">
             User Name :
-            <input type="text" ng-model="data.UserName" class="form-control" />
+            <input type="text" ng-model="data.UserName" class="form-control" ng-required="true" />
         </p>
         <p ng-if="data.IsAdmin">
             Password :
-            <input type="password" ng-model="data.Password" class="form-control" />
+            <input type="password" ng-model="data.Password" class="form-control" ng-required="true" />
         </p>
         <p>
             Email :
@@ -33,7 +33,7 @@
             Position : 
         </p>
         <p>
-            <select ng-model="data.PositionId" ng-options="p.PositionId as p.Description for p in positions" ng-required="true" ></select>
+            <select ng-model="data.PositionId" ng-options="p.PositionId as p.Description for p in positions" ng-required="true"></select>
         </p>
     </div>
     <div class="modal-footer">

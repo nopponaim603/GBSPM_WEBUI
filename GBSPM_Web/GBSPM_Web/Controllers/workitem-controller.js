@@ -44,7 +44,7 @@
                     return angular.copy(x);
                 },
                 comtrolName: function () {
-                    return "EditWorkItem";
+                    return "AddWorkItem";
                 },
                 additionalItems: function () {
                     return l_additionalItems;

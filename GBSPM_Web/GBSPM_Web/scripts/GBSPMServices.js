@@ -348,7 +348,7 @@
         var deferred = $q.defer();
         $http({
             method: 'POST',
-            url: 'http://localhost:50147/api/workitemgroup/',
+            url: 'http://localhost:50147/api/workitemtype/',
             data: workitemtype
         })
       .success(function (data) {
@@ -374,6 +374,17 @@
           deferred.reject();
       });
         return deferred.promise;
+    }
+    //
+
+    // region Graph services
+    this.GetGraphDataByProject = function () {
+        var deferred = $q.defer();
+
+        deferred.resolve(10);
+
+        return deferred.promise;
+
     }
     //
 });
