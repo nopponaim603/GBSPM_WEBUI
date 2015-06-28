@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>GBSP | CPM</title>
+    <title>GBSPM</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -84,7 +84,7 @@
 </head>
 <body class="skin-blue">
     <!-- Site wrapper -->
-    <div class="wrapper">
+    <div class="wrapper" ng-app="mainApp">
 
         <header class="main-header">
             <a ui-sref="home" href="#/home" class="logo"><b>GB</b>SPM</a>
@@ -98,7 +98,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <div class="navbar-custom-menu">
+                <div class="navbar-custom-menu" ng-controller="UserInfoCtrl">
                     <ul class="nav navbar-nav">
 
 
@@ -106,7 +106,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
-                                <span class="hidden-xs">Sooparerk Sakyai</span>
+                                <span class="hidden-xs">{{ CurrentUser.FirstName + '  ' + CurrentUser.LastName}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -130,13 +130,12 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <!-- Sidebar user panel -->
-                <div class="user-panel">
+                <div class="user-panel" ng-controller="UserInfoCtrl">
                     <div class="pull-left image">
                         <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     </div>
                     <div class="pull-left info">
-                        <p>
-                            Sooparerk Sakyai<p>
+                        <p> {{ CurrentUser.FirstName + '  ' + CurrentUser.LastName}}<p>
                                 <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
                     </div>
                 </div>
@@ -235,7 +234,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div ng-app="mainApp">
+            <div>
                 <div ui-view></div>
             </div>
 

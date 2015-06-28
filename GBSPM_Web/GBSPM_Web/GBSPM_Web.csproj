@@ -139,6 +139,7 @@
     <Content Include="Images\loading.gif" />
     <Content Include="Index.html" />
     <Content Include="login.html" />
+    <Content Include="MyLoginForm.html" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
@@ -648,6 +649,7 @@
     <Content Include="scripts\d3\d3.js" />
     <Content Include="scripts\d3\d3.min.js" />
     <Content Include="scripts\graph.js" />
+    <Content Include="scripts\loginApp.js" />
     <Content Include="scripts\scriptApp.js" />
     <Content Include="scripts\GBSPMServices.js" />
     <Content Include="test.html" />

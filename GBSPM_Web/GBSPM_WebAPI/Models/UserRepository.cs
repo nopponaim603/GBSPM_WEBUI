@@ -73,6 +73,30 @@ namespace GBSPM_WebAPI.Models
             return user;
         }
 
+        public UserEntity GetLonginUser(string username, string password)
+        {
+            var user = dataContext.Users.FirstOrDefault(c => (c.UserName == username | c.Email == username ) & c.Password == password);
+            if (user != null)
+            {
+                return new UserEntity()
+                {
+                    UserId = user.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                    Password = user.Password,
+                    PositionId = user.PositionId,
+                    Email = user.Email,
+                    Position = new PositionEntity()
+                    {
+                        Description = user.Position.Description,
+                        PositionId = user.PositionId
+                    }
+                };
+            }
+            return null;
+        }
+
         public bool UpdateUser(DataModel.UserEntity user)
         {
             var userToUpdate = dataContext.Users.FirstOrDefault(c => c.UserId == user.UserId);

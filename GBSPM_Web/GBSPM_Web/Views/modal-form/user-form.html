@@ -8,7 +8,7 @@
         </h4>
     </div>
     <div class="modal-body">
-        <p>
+         <p>
             FirstName :
             <input type="text" ng-model="data.FirstName" class="form-control" ng-required="true" />
             <p class="help-block" ng-if="myForm.data.FirstName.$error.required">The user's name is required</p>
@@ -17,12 +17,12 @@
             LastName :
             <input type="text" ng-model="data.LastName" class="form-control" ng-required="true" />
         </p>
-        <p ng-if="data.IsAdmin">
+        <p ng-if="LoginUser.IsAdmin">
             User Name :
             <input type="text" ng-model="data.UserName" class="form-control" ng-required="true" />
         </p>
-        <p ng-if="data.IsAdmin">
-            Password :
+        <p ng-if="LoginUser.IsAdmin">
+            Password : 
             <input type="password" ng-model="data.Password" class="form-control" ng-required="true" />
         </p>
         <p>

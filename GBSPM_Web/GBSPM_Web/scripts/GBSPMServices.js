@@ -387,4 +387,9 @@
 
     }
     //
+
+    this.Login = function (username, password) {
+        return true;
+
+    }
 });

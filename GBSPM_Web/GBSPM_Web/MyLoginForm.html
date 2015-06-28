@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/loginApp.js"></script>
+</head>
+<body>
+    <div ng-app="loginApp">
+    <div ng-controller="LoginController">
+        <form novalidate name="f1" ng-controller="LoginController" ng-submit="Login()">
+            <div>
+                {{Message}}
+            </div>
+            <table>
+                <tr>
+                    <td>User name :</td>
+                    <td>
+                        <input type="text" name="cUsernamer" ng-model="LogInData.username" />
+                        <span class="has-error" ng-show="(f1.cUsernamer.$dirty) && f1.cUsernamer.$error.requires">Username Reqiored</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password :</td>
+                    <td>
+                        <input type="password" name="cPassword" ng-model="LogInData.password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Log In" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+        </div>
+
+</body>
+</html>

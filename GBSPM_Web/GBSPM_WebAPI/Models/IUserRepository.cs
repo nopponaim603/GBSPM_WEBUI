@@ -14,5 +14,6 @@ namespace GBSPM_WebAPI.Models
         UserEntity AddUser(UserEntity user);
         bool UpdateUser(UserEntity user);
         bool DeleteUser(int id);
+        UserEntity GetLonginUser(string username, string password);
     }
 }

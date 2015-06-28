@@ -87,7 +87,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
-app.controller('homeController', function ($scope, $http, $modal) {
+app.controller('homeController', function ($scope, $http, $modal, $window) {
     $scope.title = "Home";
     $scope.subTitle = "All about thing is here.";
     $scope.onSubmit = function myfunction() {
@@ -342,6 +342,7 @@ function OnSubmitHandler(comtrolName, data, $http, modal, ServiceFactory) {
 function InjectAdditionalDataForModal($scope, controlName, additionalItems) {
     if (controlName == "EditUser" || controlName == "AddUser") {
         $scope.positions = additionalItems;
+        $scope.LoginUser = JSON.parse(sessionStorage.getItem('login-user'));
     }
     else if (controlName == "EditWorkItem" || controlName == "AddWorkItem") {
         $scope.users = additionalItems['user'];
@@ -499,4 +500,13 @@ app.controller('PeopleCtrl', function ($scope, $http, $modal, ServiceFactory) {
             $scope.display = true;
         });
     }, 5000);
+});
+
+app.controller('UserInfoCtrl', function ($scope, $window) {
+    if (sessionStorage.getItem('login-user') == null) {
+        $window.location = '/Login.html';
+        return;
+    }
+
+    $scope.CurrentUser = JSON.parse(sessionStorage.getItem('login-user'));
 });

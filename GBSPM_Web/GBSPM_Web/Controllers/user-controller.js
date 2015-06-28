@@ -4,7 +4,7 @@
     $scope.subTitle = "All about user is here.";
     $scope.positions;
     $scope.display = false;
-
+    
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
             templateUrl: '/Views/modal-form/user-form.html',

@@ -12,13 +12,13 @@
             Work Item Type :
         </p>
         <p>
-            <select ng-model="data.WorkItemTypeId" ng-options="w.WorkItemTypeId as w.Description for w in workitemtypes" ng-required="true"></select>
+            <select ng-model="data.WorkItemTypeId" ng-options="w.WorkItemTypeId as w.Description for w in workitemtypes" required></select>
         </p>
         <p>
             Project :
         </p>
         <p>
-            <select ng-model="data.ProjectId" ng-options="p.ProjectId as p.Name for p in projects" ng-required="true"></select>
+            <select ng-model="data.ProjectId" ng-options="p.ProjectId as p.Name for p in projects" required></select>
         </p>
         <p>
             Title

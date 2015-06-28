@@ -38,6 +38,13 @@ namespace GBSPM_WebAPI.Controllers
             return user;
         }
 
+        public UserEntity GetUserLogin(string username, string password)
+        {
+            UserEntity user = context.GetLonginUser(username, password);
+
+            return user;
+        }
+
         // PUT api/User/5
         public HttpResponseMessage PutUser(UserEntity user)
         {
