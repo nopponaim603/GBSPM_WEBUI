@@ -350,6 +350,11 @@ function InjectAdditionalDataForModal($scope, controlName, additionalItems) {
         $scope.projects = additionalItems['project'];
         $scope.workitemgroups = additionalItems['workitemgroup'];
         $scope.workitemtypes = additionalItems['workitemtype'];
+        $scope.workitemgroupId = additionalItems['workitemgroupId'] != null ? true : false;
+        $scope.workitemgroup = additionalItems['workitemgroupId'];
+    }
+    else if (controlName == "EditWorkItemGroup" || controlName == "AddWorkItemGroup") {
+        $scope.projects = additionalItems;
     }
 }
 

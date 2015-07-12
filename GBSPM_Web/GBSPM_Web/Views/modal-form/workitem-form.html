@@ -14,10 +14,10 @@
         <p>
             <select ng-model="data.WorkItemTypeId" ng-options="w.WorkItemTypeId as w.Description for w in workitemtypes" required></select>
         </p>
-        <p>
+        <p ng-if="!workitemgroupId">
             Project :
         </p>
-        <p>
+        <p ng-if="!workitemgroupId">
             <select ng-model="data.ProjectId" ng-options="p.ProjectId as p.Name for p in projects" required></select>
         </p>
         <p>
@@ -45,10 +45,12 @@
         <p>
             Work Item Group :
         </p>
-        <p>
+        <p ng-if="!workitemgroupId">
             <select ng-model="data.WorkItemGroupId" ng-options="w.WorkItemGroupId as w.Description for w in workitemgroups" ng-required="true"></select>
+        </p>        
+        <p ng-if="workitemgroupId">
+            <input type="text" ng-model="workitemgroup" class="form-control" ng-required="true" disabled />
         </p>
-
         <p>
             Estimate Time
             <input type="text" ng-model="data.EstimateTime" class="form-control" />

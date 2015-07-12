@@ -3,6 +3,7 @@
     $scope.title = "Display All Work Item Group";
     $scope.subTitle = "All about work item group is here.";
     $scope.display = false;
+    var projects;
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({
@@ -16,7 +17,7 @@
                     return "EditWorkItemGroup";
                 },
                 additionalItems: function () {
-                    return null;
+                    return projects;
                 }
             },
             backdrop: 'static',
@@ -44,7 +45,7 @@
                     return "AddWorkItemGroup";
                 },
                 additionalItems: function () {
-                    return null;
+                    return projects;
                 }
             },
             backdrop: 'static',
@@ -67,6 +68,13 @@
         function (error) {
 
         });
+
+        ServiceFactory.GetAllProjects().then(function (data) {
+            projects = data;
+        },
+         function (error) {
+
+         });
     }
 
     InjectData();

@@ -32,13 +32,15 @@
 
                             <table class="table table-bordered">
                                 <tr style="font-size: 18px">
-                                    <th>Id</th>
+                                    <th>Project</th>
                                     <th>Description</th>
+                                    <th>Order Number</th>
                                     <th></th>
                                 </tr>
                                 <tr ng-repeat="x in workitemgroups | filter:test | orderBy:'Description'">
-                                    <td style="width: 10%">{{ x.WorkItemGroupId }}</td>
-                                    <td style="width: 90%">{{ x.Description }}</td>
+                                    <td style="width: 10%">{{ x.Project.Name }}</td>
+                                    <td style="width: 80%">{{ x.Description }}</td>
+                                    <td style="width: 10%">{{ x.OrderNumber }}</td>
                                     <td><button type="button" class="btn btn-link" data-toggle="modal" ng-click="OnEdit(x)">Select</button></td>
                                 </tr>
                             </table>

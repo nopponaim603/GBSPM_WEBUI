@@ -8,7 +8,18 @@
         </h4>
     </div>
     <div class="modal-body">
-        <p>Description <input type="text" ng-model="data.Description" class="form-control" /></p>
+        <p>
+            Project :
+        </p>
+        <p>
+            <select ng-model="data.ProjectId" ng-options="p.ProjectId as p.Name for p in projects" ng-required="true"></select>
+        </p>
+        <p>Description
+            <input type="text" ng-model="data.Description" class="form-control" ng-required="true" /></p>
+        <p>
+            Order Number
+            <input type="text" ng-model="data.OrderNumber" class="form-control" ng-required="true" />
+        </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="close()">

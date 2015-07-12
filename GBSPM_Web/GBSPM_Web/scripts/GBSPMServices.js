@@ -190,6 +190,18 @@
       });
         return deferred.promise;
     }
+
+    this.GetWorkItemById = function (id) {
+        var deferred = $q.defer();
+        $http.get('http://localhost:50147/api/workitem/'+ id).
+         success(function (data, status) {
+             deferred.resolve(data);
+         }).
+         error(function (data, status) {
+             deferred.reject();
+         });
+        return deferred.promise;
+    }
     //
 
     //region Right services
@@ -329,6 +341,18 @@
       });
         return deferred.promise;
     }
+
+    this.GetWorkItemGroupById = function (id) {
+        var deferred = $q.defer();
+        $http.get('http://localhost:50147/api/workitemgroup/' + id).
+         success(function (data, status) {
+             deferred.resolve(data);
+         }).
+         error(function (data, status) {
+             deferred.reject();
+         });
+        return deferred.promise;
+    }
     //
 
     //region WorkItemType services
@@ -381,7 +405,7 @@
     this.GetGraphDataByProject = function (projectId) {
         var deferred = $q.defer();
 
-        $http.get('http://localhost:50147/api/graph/1').
+        $http.get('http://localhost:50147/api/graph/' + projectId).
         success(function (data, status) {
             deferred.resolve(data);
         }).

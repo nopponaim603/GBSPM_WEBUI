@@ -5,7 +5,7 @@
     $scope.display = false;
 
 
-    var l_additionalItems = { user: null, status: null, project: null, workitemgroup: null, workitemtype: null };
+    var l_additionalItems = { user: null, status: null, project: null, workitemgroup: null, workitemtype: null, workitemgroupId: null };
 
     $scope.OnEdit = function myfunction(x) {
         var modalInstance = $modal.open({

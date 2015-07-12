@@ -15,7 +15,7 @@ namespace GBSPM_WebAPI.Models
         public IEnumerable<WorkItemEntity> GetAll()
         {
             List<WorkItemEntity> workItems = new List<WorkItemEntity>();
-            foreach (var item in dataContext.WorkItems)
+            foreach (var item in dataContext.WorkItems.OrderBy(c => c.Priority))
             {
                 WorkItemEntity workItem = new WorkItemEntity();
                 workItem.WorkItemId = item.WorkItemId;

@@ -77,6 +77,7 @@
                 elements: eles,
                 zoomingEnabled: false,
                 fit: true,
+                userPanningEnabled :false,
                 ready: function () {
                     deferred.resolve(this);
 

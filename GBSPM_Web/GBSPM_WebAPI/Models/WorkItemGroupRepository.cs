@@ -14,13 +14,14 @@ namespace GBSPM_WebAPI.Models
         public IEnumerable<DataModel.WorkItemGroupEntity> GetAll()
         {
             List<WorkItemGroupEntity> workItemsGroups = new List<WorkItemGroupEntity>();
-            foreach (var data in db.WorkItemGroups)
+            foreach (var data in db.WorkItemGroups.OrderBy(c => c.ProjectId).ThenBy(c => c.OrderNumber))
             {
                 WorkItemGroupEntity workItemGroup = new WorkItemGroupEntity();
                 workItemGroup.WorkItemGroupId = data.WorkItemGroupId;
                 workItemGroup.Description = data.Description;
                 workItemGroup.OrderNumber = data.OrderNumber;
                 workItemGroup.ProjectId = data.ProjectId;
+                workItemGroup.Project = new ProjectRepositiory().GetProjectById(data.ProjectId);
 
                 workItemsGroups.Add(workItemGroup);
             }
@@ -38,6 +39,7 @@ namespace GBSPM_WebAPI.Models
                 workItemGroup.Description = data.Description;
                 workItemGroup.OrderNumber = data.OrderNumber;
                 workItemGroup.ProjectId = data.ProjectId;
+                workItemGroup.Project = new ProjectRepositiory().GetProjectById(data.ProjectId);
                 return workItemGroup;
             }
             return null;
