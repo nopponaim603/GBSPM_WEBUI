@@ -15,7 +15,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         .state('displayGraph', {
             url: '/displayGraph',
-            templateUrl: '/Views/displaygraph_sample.html',
+            templateUrl: '/Views/displaygraph.html',
             controller: 'graphController'
 
         })

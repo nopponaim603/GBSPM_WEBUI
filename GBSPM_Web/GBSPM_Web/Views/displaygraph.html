@@ -1,0 +1,39 @@
+﻿<section class="content-header">
+    <h1>{{title}}
+        <small>{{subTitle}}</small>
+    </h1>
+
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="">
+        <div class="">
+            <div>
+                <div>
+
+                    <div class="box" style="padding: 20px">
+
+
+                        <div class="box-body">
+                            <p>
+                                <select ng-model="ProjectId" ng-options="p.ProjectId as p.Name for p in projects" ng-required="true" ng-change="OnSelectedProjectChanged(ProjectId)"></select>
+                            </p>
+
+                        </div>
+                        <div ng-hide="display" class="loading">
+                            <img src="../Images/loading.gif" /></div>
+                        <!-- /.box-body -->
+
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <!-- /.box -->
+</section>
+

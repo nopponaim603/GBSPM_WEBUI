@@ -77,6 +77,10 @@
             <End Role="WorkItemType" EntitySet="WorkItemType" />
             <End Role="WorkItem" EntitySet="WorkItem" />
           </AssociationSet>
+          <AssociationSet Name="FK_WorkItemGroup_Project" Association="GBSPM_DEVModel.Store.FK_WorkItemGroup_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="WorkItemGroup" EntitySet="WorkItemGroup" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ChangeHistory">
           <Key>
@@ -174,6 +178,8 @@
           </Key>
           <Property Name="WorkItemGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar" MaxLength="400" />
+          <Property Name="OrderNumber" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="WorkItemType">
           <Key>
@@ -362,6 +368,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WorkItemGroup_Project">
+          <End Role="Project" Type="GBSPM_DEVModel.Store.Project" Multiplicity="1" />
+          <End Role="WorkItemGroup" Type="GBSPM_DEVModel.Store.WorkItemGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="WorkItemGroup">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -404,6 +422,10 @@
             <End Role="Project" EntitySet="Projects" />
             <End Role="WorkItem" EntitySet="WorkItems" />
           </AssociationSet>
+          <AssociationSet Name="FK_WorkItemGroup_Project" Association="GBSPM_DEVModel.FK_WorkItemGroup_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="WorkItemGroup" EntitySet="WorkItemGroups" />
+          </AssociationSet>
           <AssociationSet Name="FK_WorkItem_Status" Association="GBSPM_DEVModel.FK_WorkItem_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="WorkItem" EntitySet="WorkItems" />
@@ -433,18 +455,18 @@
           <Key>
             <PropertyRef Name="ChangeId" />
           </Key>
-          <Property Name="ChangeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="WorkItemId" Type="Int32" Nullable="false" />
-          <Property Name="WorkItemTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Priority" Type="Int32" Nullable="false" />
-          <Property Name="AssignTo" Type="Int32" />
-          <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="ProjectId" Type="Int32" Nullable="false" />
-          <Property Name="EstimateTime" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="ActualTime" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="ChangeTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ChangeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="WorkItemId" Nullable="false" />
+          <Property Type="Int32" Name="WorkItemTypeId" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Priority" Nullable="false" />
+          <Property Type="Int32" Name="AssignTo" />
+          <Property Type="Int32" Name="StatusId" Nullable="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="Decimal" Name="EstimateTime" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ActualTime" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="ChangeTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Project" Relationship="GBSPM_DEVModel.FK_ChangeHistory_Project" FromRole="ChangeHistory" ToRole="Project" />
           <NavigationProperty Name="Status" Relationship="GBSPM_DEVModel.FK_ChangeHistory_Status" FromRole="ChangeHistory" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="GBSPM_DEVModel.FK_ChangeHistory_User" FromRole="ChangeHistory" ToRole="User" />
@@ -455,35 +477,36 @@
           <Key>
             <PropertyRef Name="PositionId" />
           </Key>
-          <Property Name="PositionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="PositionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="GBSPM_DEVModel.FK_User_Position" FromRole="Position" ToRole="User" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Name="ProjectId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChangeHistories" Relationship="GBSPM_DEVModel.FK_ChangeHistory_Project" FromRole="Project" ToRole="ChangeHistory" />
           <NavigationProperty Name="WorkItems" Relationship="GBSPM_DEVModel.FK_WorkItem_Project" FromRole="Project" ToRole="WorkItem" />
+          <NavigationProperty Name="WorkItemGroups" Relationship="GBSPM_DEVModel.FK_WorkItemGroup_Project" FromRole="Project" ToRole="WorkItemGroup" />
           <NavigationProperty Name="Users" Relationship="GBSPM_DEVModel.ProjectUser" FromRole="Project" ToRole="User" />
         </EntityType>
         <EntityType Name="Right">
           <Key>
             <PropertyRef Name="RightId" />
           </Key>
-          <Property Name="RightId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="RightId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="GBSPM_DEVModel.UserUserRight" FromRole="Right" ToRole="User" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="StatusId" />
           </Key>
-          <Property Name="StatusId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="StatusId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChangeHistories" Relationship="GBSPM_DEVModel.FK_ChangeHistory_Status" FromRole="Status" ToRole="ChangeHistory" />
           <NavigationProperty Name="WorkItems" Relationship="GBSPM_DEVModel.FK_WorkItem_Status" FromRole="Status" ToRole="WorkItem" />
         </EntityType>
@@ -491,13 +514,13 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
-          <Property Name="PositionId" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PositionId" Nullable="false" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChangeHistories" Relationship="GBSPM_DEVModel.FK_ChangeHistory_User" FromRole="User" ToRole="ChangeHistory" />
           <NavigationProperty Name="Position" Relationship="GBSPM_DEVModel.FK_User_Position" FromRole="User" ToRole="Position" />
           <NavigationProperty Name="WorkItems" Relationship="GBSPM_DEVModel.FK_WorkItem_User" FromRole="User" ToRole="WorkItem" />
@@ -508,17 +531,17 @@
           <Key>
             <PropertyRef Name="WorkItemId" />
           </Key>
-          <Property Name="WorkItemId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="WorkItemTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Priority" Type="Int32" Nullable="false" />
-          <Property Name="AssignTo" Type="Int32" />
-          <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="ProjectId" Type="Int32" Nullable="false" />
-          <Property Name="EstimateTime" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="ActualTime" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="WorkItemGroupId" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="WorkItemId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="WorkItemTypeId" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Priority" Nullable="false" />
+          <Property Type="Int32" Name="AssignTo" />
+          <Property Type="Int32" Name="StatusId" Nullable="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="Decimal" Name="EstimateTime" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ActualTime" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="WorkItemGroupId" Nullable="false" />
           <NavigationProperty Name="ChangeHistories" Relationship="GBSPM_DEVModel.FK_ChangeHistory_WorkItem" FromRole="WorkItem" ToRole="ChangeHistory" />
           <NavigationProperty Name="Project" Relationship="GBSPM_DEVModel.FK_WorkItem_Project" FromRole="WorkItem" ToRole="Project" />
           <NavigationProperty Name="Status" Relationship="GBSPM_DEVModel.FK_WorkItem_Status" FromRole="WorkItem" ToRole="Status" />
@@ -530,22 +553,25 @@
           <Key>
             <PropertyRef Name="WorkItemGroupId" />
           </Key>
-          <Property Name="WorkItemGroupId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="WorkItemGroupId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="GBSPM_DEVModel.FK_WorkItemGroup_Project" FromRole="WorkItemGroup" ToRole="Project" />
           <NavigationProperty Name="WorkItems" Relationship="GBSPM_DEVModel.FK_WorkItem_WorkItemGroup" FromRole="WorkItemGroup" ToRole="WorkItem" />
         </EntityType>
         <EntityType Name="WorkItemType">
           <Key>
             <PropertyRef Name="WorkItemTypeId" />
           </Key>
-          <Property Name="WorkItemTypeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="WorkItemTypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChangeHistories" Relationship="GBSPM_DEVModel.FK_ChangeHistory_WorkItemType" FromRole="WorkItemType" ToRole="ChangeHistory" />
           <NavigationProperty Name="WorkItems" Relationship="GBSPM_DEVModel.FK_WorkItem_WorkItemType" FromRole="WorkItemType" ToRole="WorkItem" />
         </EntityType>
         <Association Name="FK_ChangeHistory_Project">
-          <End Role="Project" Type="GBSPM_DEVModel.Project" Multiplicity="1" />
-          <End Role="ChangeHistory" Type="GBSPM_DEVModel.ChangeHistory" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.ChangeHistory" Role="ChangeHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Project">
               <PropertyRef Name="ProjectId" />
@@ -556,8 +582,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChangeHistory_Status">
-          <End Role="Status" Type="GBSPM_DEVModel.Status" Multiplicity="1" />
-          <End Role="ChangeHistory" Type="GBSPM_DEVModel.ChangeHistory" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.ChangeHistory" Role="ChangeHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusId" />
@@ -568,8 +594,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChangeHistory_User">
-          <End Role="User" Type="GBSPM_DEVModel.User" Multiplicity="0..1" />
-          <End Role="ChangeHistory" Type="GBSPM_DEVModel.ChangeHistory" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="GBSPM_DEVModel.ChangeHistory" Role="ChangeHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
@@ -580,8 +606,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChangeHistory_WorkItem">
-          <End Role="WorkItem" Type="GBSPM_DEVModel.WorkItem" Multiplicity="1" />
-          <End Role="ChangeHistory" Type="GBSPM_DEVModel.ChangeHistory" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.WorkItem" Role="WorkItem" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.ChangeHistory" Role="ChangeHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkItem">
               <PropertyRef Name="WorkItemId" />
@@ -592,8 +618,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChangeHistory_WorkItemType">
-          <End Role="WorkItemType" Type="GBSPM_DEVModel.WorkItemType" Multiplicity="1" />
-          <End Role="ChangeHistory" Type="GBSPM_DEVModel.ChangeHistory" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.WorkItemType" Role="WorkItemType" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.ChangeHistory" Role="ChangeHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkItemType">
               <PropertyRef Name="WorkItemTypeId" />
@@ -604,8 +630,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Position">
-          <End Role="Position" Type="GBSPM_DEVModel.Position" Multiplicity="1" />
-          <End Role="User" Type="GBSPM_DEVModel.User" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
               <PropertyRef Name="PositionId" />
@@ -616,8 +642,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WorkItem_Project">
-          <End Role="Project" Type="GBSPM_DEVModel.Project" Multiplicity="1" />
-          <End Role="WorkItem" Type="GBSPM_DEVModel.WorkItem" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.WorkItem" Role="WorkItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Project">
               <PropertyRef Name="ProjectId" />
@@ -627,9 +653,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WorkItemGroup_Project">
+          <End Type="GBSPM_DEVModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.WorkItemGroup" Role="WorkItemGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="WorkItemGroup">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WorkItem_Status">
-          <End Role="Status" Type="GBSPM_DEVModel.Status" Multiplicity="1" />
-          <End Role="WorkItem" Type="GBSPM_DEVModel.WorkItem" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.WorkItem" Role="WorkItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusId" />
@@ -640,8 +678,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WorkItem_User">
-          <End Role="User" Type="GBSPM_DEVModel.User" Multiplicity="0..1" />
-          <End Role="WorkItem" Type="GBSPM_DEVModel.WorkItem" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="GBSPM_DEVModel.WorkItem" Role="WorkItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
@@ -652,8 +690,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WorkItem_WorkItemGroup">
-          <End Role="WorkItemGroup" Type="GBSPM_DEVModel.WorkItemGroup" Multiplicity="1" />
-          <End Role="WorkItem" Type="GBSPM_DEVModel.WorkItem" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.WorkItemGroup" Role="WorkItemGroup" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.WorkItem" Role="WorkItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkItemGroup">
               <PropertyRef Name="WorkItemGroupId" />
@@ -664,8 +702,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WorkItem_WorkItemType">
-          <End Role="WorkItemType" Type="GBSPM_DEVModel.WorkItemType" Multiplicity="1" />
-          <End Role="WorkItem" Type="GBSPM_DEVModel.WorkItem" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.WorkItemType" Role="WorkItemType" Multiplicity="1" />
+          <End Type="GBSPM_DEVModel.WorkItem" Role="WorkItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkItemType">
               <PropertyRef Name="WorkItemTypeId" />
@@ -676,14 +714,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ProjectUser">
-          <End Role="Project" Type="GBSPM_DEVModel.Project" Multiplicity="*" />
-          <End Role="User" Type="GBSPM_DEVModel.User" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.Project" Role="Project" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.User" Role="User" Multiplicity="*" />
         </Association>
         <Association Name="UserUserRight">
-          <End Role="Right" Type="GBSPM_DEVModel.Right" Multiplicity="*" />
-          <End Role="User" Type="GBSPM_DEVModel.User" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.Right" Role="Right" Multiplicity="*" />
+          <End Type="GBSPM_DEVModel.User" Role="User" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -692,114 +730,116 @@
           <EntitySetMapping Name="ChangeHistories">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.ChangeHistory">
               <MappingFragment StoreEntitySet="ChangeHistory">
-                <ScalarProperty Name="ChangeId" ColumnName="ChangeId" />
-                <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
-                <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
-                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
-                <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
                 <ScalarProperty Name="ChangeTime" ColumnName="ChangeTime" />
+                <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
+                <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
+                <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
+                <ScalarProperty Name="ChangeId" ColumnName="ChangeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Positions">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.Position">
               <MappingFragment StoreEntitySet="Position">
-                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.Project">
               <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rights">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.Right">
               <MappingFragment StoreEntitySet="Right">
-                <ScalarProperty Name="RightId" ColumnName="RightId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RightId" ColumnName="RightId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WorkItems">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.WorkItem">
               <MappingFragment StoreEntitySet="WorkItem">
-                <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
-                <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
-                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
-                <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
                 <ScalarProperty Name="WorkItemGroupId" ColumnName="WorkItemGroupId" />
+                <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
+                <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
+                <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WorkItemGroups">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.WorkItemGroup">
               <MappingFragment StoreEntitySet="WorkItemGroup">
-                <ScalarProperty Name="WorkItemGroupId" ColumnName="WorkItemGroupId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WorkItemGroupId" ColumnName="WorkItemGroupId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WorkItemTypes">
             <EntityTypeMapping TypeName="GBSPM_DEVModel.WorkItemType">
               <MappingFragment StoreEntitySet="WorkItemType">
-                <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="ProjectUser" TypeName="GBSPM_DEVModel.ProjectUser" StoreEntitySet="ProjectUser">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
             <EndProperty Name="Project">
               <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
             </EndProperty>
-            <EndProperty Name="User">
-              <ScalarProperty Name="UserId" ColumnName="UserId" />
-            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="UserUserRight" TypeName="GBSPM_DEVModel.UserUserRight" StoreEntitySet="UserUserRight">
-            <EndProperty Name="Right">
-              <ScalarProperty Name="RightId" ColumnName="RightId" />
-            </EndProperty>
             <EndProperty Name="User">
               <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Right">
+              <ScalarProperty Name="RightId" ColumnName="RightId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
@@ -816,7 +856,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

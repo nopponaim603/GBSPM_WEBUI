@@ -18,6 +18,7 @@ namespace GBSPM_WebAPI.Models
         {
             this.ChangeHistories = new HashSet<ChangeHistory>();
             this.WorkItems = new HashSet<WorkItem>();
+            this.WorkItemGroups = new HashSet<WorkItemGroup>();
             this.Users = new HashSet<User>();
         }
     
@@ -27,6 +28,7 @@ namespace GBSPM_WebAPI.Models
     
         public virtual ICollection<ChangeHistory> ChangeHistories { get; set; }
         public virtual ICollection<WorkItem> WorkItems { get; set; }
+        public virtual ICollection<WorkItemGroup> WorkItemGroups { get; set; }
         public virtual ICollection<User> Users { get; set; }
     }
 }

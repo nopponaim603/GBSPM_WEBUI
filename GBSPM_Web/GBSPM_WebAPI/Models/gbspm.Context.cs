@@ -30,7 +30,6 @@ namespace GBSPM_WebAPI.Models
         public DbSet<Project> Projects { get; set; }
         public DbSet<Right> Rights { get; set; }
         public DbSet<Status> Status { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<WorkItem> WorkItems { get; set; }
         public DbSet<WorkItemGroup> WorkItemGroups { get; set; }

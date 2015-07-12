@@ -19,6 +19,8 @@ namespace GBSPM_WebAPI.Models
                 WorkItemGroupEntity workItemGroup = new WorkItemGroupEntity();
                 workItemGroup.WorkItemGroupId = data.WorkItemGroupId;
                 workItemGroup.Description = data.Description;
+                workItemGroup.OrderNumber = data.OrderNumber;
+                workItemGroup.ProjectId = data.ProjectId;
 
                 workItemsGroups.Add(workItemGroup);
             }
@@ -34,6 +36,8 @@ namespace GBSPM_WebAPI.Models
                 WorkItemGroupEntity workItemGroup = new WorkItemGroupEntity();
                 workItemGroup.WorkItemGroupId = data.WorkItemGroupId;
                 workItemGroup.Description = data.Description;
+                workItemGroup.OrderNumber = data.OrderNumber;
+                workItemGroup.ProjectId = data.ProjectId;
                 return workItemGroup;
             }
             return null;
@@ -43,6 +47,8 @@ namespace GBSPM_WebAPI.Models
         {
             WorkItemGroup l_group = new WorkItemGroup();
             l_group.Description = workItemGroup.Description;
+            l_group.OrderNumber = workItemGroup.OrderNumber;
+            l_group.ProjectId = workItemGroup.ProjectId;
             db.WorkItemGroups.Add(l_group);
             db.SaveChanges();
             return workItemGroup;
@@ -54,6 +60,8 @@ namespace GBSPM_WebAPI.Models
             if (l_group != null)
             {
                 l_group.Description = workItemGroup.Description;
+                l_group.OrderNumber = workItemGroup.OrderNumber;
+                l_group.ProjectId = workItemGroup.ProjectId;
                 db.Entry(l_group).State = EntityState.Modified;
                 db.SaveChanges();
             }

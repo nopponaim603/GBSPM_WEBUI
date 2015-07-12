@@ -5,28 +5,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d61bbd3ce9c14af5b7ae538deb12f0b7" Name="Diagram1">
-        <EntityTypeShape EntityType="GBSPM_DEVModel.ChangeHistory" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.Position" Width="1.5" PointX="3.75" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.Project" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.Right" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.Status" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.User" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItem" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItemGroup" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItemType" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_User" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_WorkItem" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_WorkItemType" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_User_Position" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_User" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_WorkItemGroup" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_WorkItemType" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.ProjectUser" ManuallyRouted="false" />
-        <AssociationConnector Association="GBSPM_DEVModel.UserUserRight" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.ChangeHistory" Width="1.5" PointX="2.5" PointY="1.5" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.Position" Width="1.5" PointX="3.7115172593442338" PointY="30.35105401200757" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.Project" Width="1.5" PointX="9.0577730876662645" PointY="25.438484635873923" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.Right" Width="1.5" PointX="2.0989107760130015" PointY="15.044444776626511" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.Status" Width="1.5" PointX="10.46421865488599" PointY="17.156162061335593" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.User" Width="1.5" PointX="0.28055331869076627" PointY="29.644856392240552" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItem" Width="1.5" PointX="7.0482336278298092" PointY="5.4185593302448094" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItemGroup" Width="1.5" PointX="7.375" PointY="21.75" />
+        <EntityTypeShape EntityType="GBSPM_DEVModel.WorkItemType" Width="1.5" PointX="8.75336326321278" PointY="6.2918946325275558" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_Project" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_Status" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_User" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_WorkItem" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_ChangeHistory_WorkItemType" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_User_Position" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_Project" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItemGroup_Project" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_Status" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_User" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_WorkItemGroup" />
+        <AssociationConnector Association="GBSPM_DEVModel.FK_WorkItem_WorkItemType" />
+        <AssociationConnector Association="GBSPM_DEVModel.ProjectUser" />
+        <AssociationConnector Association="GBSPM_DEVModel.UserUserRight" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

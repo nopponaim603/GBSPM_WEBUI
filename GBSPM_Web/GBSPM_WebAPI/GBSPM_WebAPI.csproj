@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AllowCrossSiteJsonAttribute .cs" />
+    <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -137,6 +138,7 @@
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataModel\ChangeHistoryEntity.cs" />
+    <Compile Include="Models\DataModel\GraphEntity.cs" />
     <Compile Include="Models\DataModel\PositionEntity.cs" />
     <Compile Include="Models\DataModel\ProjectEntity.cs" />
     <Compile Include="Models\DataModel\RightEntity.cs" />
@@ -161,6 +163,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gbspm.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GraphRepository.cs" />
+    <Compile Include="Models\IGraphRepository.cs" />
     <Compile Include="Models\IPersonRepository.cs" />
     <Compile Include="Models\IPositionRepository.cs" />
     <Compile Include="Models\IProjectRepositiory.cs" />
@@ -188,9 +192,6 @@
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusRepository.cs" />
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>gbspm.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>gbspm.tt</DependentUpon>
     </Compile>
@@ -252,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClassDiagram1.cd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

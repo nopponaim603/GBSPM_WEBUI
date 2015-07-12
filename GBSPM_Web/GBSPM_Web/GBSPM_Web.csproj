@@ -79,6 +79,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
+    <Content Include="Controllers\graph-controller.js" />
     <Content Include="Controllers\position-controller.js" />
     <Content Include="Controllers\project-controller.js" />
     <Content Include="Controllers\right-controller.js" />
@@ -654,6 +655,7 @@
     <Content Include="scripts\GBSPMServices.js" />
     <Content Include="test.html" />
     <Content Include="Views\detail.html" />
+    <Content Include="Views\displaygraph.html" />
     <Content Include="Views\displaygraph_sample.html" />
     <Content Include="Views\DisplayPeople.html" />
     <Content Include="Views\home.html" />

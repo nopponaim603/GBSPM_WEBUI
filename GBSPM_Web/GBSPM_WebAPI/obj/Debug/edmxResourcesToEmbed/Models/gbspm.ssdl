@@ -72,6 +72,10 @@
       <End Role="WorkItemType" EntitySet="WorkItemType" />
       <End Role="WorkItem" EntitySet="WorkItem" />
     </AssociationSet>
+    <AssociationSet Name="FK_WorkItemGroup_Project" Association="GBSPM_DEVModel.Store.FK_WorkItemGroup_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="WorkItemGroup" EntitySet="WorkItemGroup" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ChangeHistory">
     <Key>
@@ -169,6 +173,8 @@
     </Key>
     <Property Name="WorkItemGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Description" Type="nvarchar" MaxLength="400" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="WorkItemType">
     <Key>
@@ -354,6 +360,18 @@
       </Principal>
       <Dependent Role="WorkItem">
         <PropertyRef Name="WorkItemTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkItemGroup_Project">
+    <End Role="Project" Type="GBSPM_DEVModel.Store.Project" Multiplicity="1" />
+    <End Role="WorkItemGroup" Type="GBSPM_DEVModel.Store.WorkItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="WorkItemGroup">
+        <PropertyRef Name="ProjectId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

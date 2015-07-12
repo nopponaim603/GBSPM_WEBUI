@@ -13,7 +13,10 @@ namespace GBSPM_WebAPI.Models.DataModel
         }
         public int WorkItemGroupId { get; set; }
         public string Description { get; set; }
+        public int OrderNumber { get; set; }
+        public int ProjectId { get; set; }
 
         public virtual List<WorkItemEntity> WorkItems { get; set; }
+        public virtual ProjectEntity Project { get; set; }
     }
 }

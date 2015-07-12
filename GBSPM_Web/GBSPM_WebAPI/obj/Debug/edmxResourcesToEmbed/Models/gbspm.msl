@@ -4,114 +4,116 @@
     <EntitySetMapping Name="ChangeHistories">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.ChangeHistory">
         <MappingFragment StoreEntitySet="ChangeHistory">
-          <ScalarProperty Name="ChangeId" ColumnName="ChangeId" />
-          <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
-          <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Priority" ColumnName="Priority" />
-          <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
-          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
-          <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
           <ScalarProperty Name="ChangeTime" ColumnName="ChangeTime" />
+          <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
+          <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
+          <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
+          <ScalarProperty Name="ChangeId" ColumnName="ChangeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Positions">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.Position">
         <MappingFragment StoreEntitySet="Position">
-          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.Project">
         <MappingFragment StoreEntitySet="Project">
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Rights">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.Right">
         <MappingFragment StoreEntitySet="Right">
-          <ScalarProperty Name="RightId" ColumnName="RightId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RightId" ColumnName="RightId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Status">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.Status">
         <MappingFragment StoreEntitySet="Status">
-          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WorkItems">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.WorkItem">
         <MappingFragment StoreEntitySet="WorkItem">
-          <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
-          <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Priority" ColumnName="Priority" />
-          <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
-          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
-          <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
           <ScalarProperty Name="WorkItemGroupId" ColumnName="WorkItemGroupId" />
+          <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
+          <ScalarProperty Name="EstimateTime" ColumnName="EstimateTime" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
+          <ScalarProperty Name="WorkItemId" ColumnName="WorkItemId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WorkItemGroups">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.WorkItemGroup">
         <MappingFragment StoreEntitySet="WorkItemGroup">
-          <ScalarProperty Name="WorkItemGroupId" ColumnName="WorkItemGroupId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="WorkItemGroupId" ColumnName="WorkItemGroupId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WorkItemTypes">
       <EntityTypeMapping TypeName="GBSPM_DEVModel.WorkItemType">
         <MappingFragment StoreEntitySet="WorkItemType">
-          <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="WorkItemTypeId" ColumnName="WorkItemTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="ProjectUser" TypeName="GBSPM_DEVModel.ProjectUser" StoreEntitySet="ProjectUser">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
       <EndProperty Name="Project">
         <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
       </EndProperty>
-      <EndProperty Name="User">
-        <ScalarProperty Name="UserId" ColumnName="UserId" />
-      </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="UserUserRight" TypeName="GBSPM_DEVModel.UserUserRight" StoreEntitySet="UserUserRight">
-      <EndProperty Name="Right">
-        <ScalarProperty Name="RightId" ColumnName="RightId" />
-      </EndProperty>
       <EndProperty Name="User">
         <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="Right">
+        <ScalarProperty Name="RightId" ColumnName="RightId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

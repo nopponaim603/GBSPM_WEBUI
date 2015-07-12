@@ -378,10 +378,16 @@
     //
 
     // region Graph services
-    this.GetGraphDataByProject = function () {
+    this.GetGraphDataByProject = function (projectId) {
         var deferred = $q.defer();
 
-        deferred.resolve(10);
+        $http.get('http://localhost:50147/api/graph/1').
+        success(function (data, status) {
+            deferred.resolve(data);
+        }).
+        error(function (data, status) {
+            deferred.reject();
+        });
 
         return deferred.promise;
 
@@ -392,4 +398,6 @@
         return true;
 
     }
+
+
 });

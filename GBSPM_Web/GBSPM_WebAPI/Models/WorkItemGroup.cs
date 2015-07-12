@@ -21,7 +21,10 @@ namespace GBSPM_WebAPI.Models
     
         public int WorkItemGroupId { get; set; }
         public string Description { get; set; }
+        public int OrderNumber { get; set; }
+        public int ProjectId { get; set; }
     
+        public virtual Project Project { get; set; }
         public virtual ICollection<WorkItem> WorkItems { get; set; }
     }
 }
