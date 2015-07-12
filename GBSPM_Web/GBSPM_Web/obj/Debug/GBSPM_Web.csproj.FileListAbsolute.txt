@@ -16,3 +16,16 @@ E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.WebHost.dll
 E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.WebHost.xml
 E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.csprojResolveAssemblyReference.cache
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\GBSPM_Web.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\GBSPM_Web.pdb
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\Newtonsoft.Json.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Net.Http.Formatting.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.WebHost.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\Newtonsoft.Json.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Net.Http.Formatting.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\bin\System.Web.Http.WebHost.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.csprojResolveAssemblyReference.cache
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_Web\obj\Debug\GBSPM_Web.pdb

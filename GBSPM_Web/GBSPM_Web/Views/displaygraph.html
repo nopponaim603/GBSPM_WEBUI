@@ -19,7 +19,7 @@
                             <p>
                                 <select ng-model="ProjectId" ng-options="p.ProjectId as p.Name for p in projects" ng-required="true" ng-change="OnSelectedProjectChanged(ProjectId)"></select>
                             </p>
-
+                            <div id="cy"></div>
                         </div>
                         <div ng-hide="display" class="loading">
                             <img src="../Images/loading.gif" /></div>

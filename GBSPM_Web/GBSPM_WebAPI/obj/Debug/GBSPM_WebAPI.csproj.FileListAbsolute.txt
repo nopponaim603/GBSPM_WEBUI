@@ -29,3 +29,34 @@ E:\Master project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\EntityFramew
 E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Cors.dll
 E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.Cors.dll
 E:\Master Project\Repository\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.Cors.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\GBSPM_WebAPI.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\GBSPM_WebAPI.pdb
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\EntityFramework.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\Microsoft.Web.Infrastructure.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\Newtonsoft.Json.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Net.Http.Formatting.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Cors.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Helpers.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.Cors.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.WebHost.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Mvc.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Razor.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.WebPages.Deployment.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.WebPages.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.WebPages.Razor.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\EntityFramework.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\Newtonsoft.Json.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Net.Http.Formatting.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.Cors.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Http.WebHost.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Helpers.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Mvc.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.Razor.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.WebPages.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.WebPages.Deployment.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\bin\System.Web.WebPages.Razor.xml
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_WebAPI.csprojResolveAssemblyReference.cache
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_WebAPI.dll
+D:\Developer\GBSPM_WEBUI\GBSPM_Web\GBSPM_WebAPI\obj\Debug\GBSPM_WebAPI.pdb
